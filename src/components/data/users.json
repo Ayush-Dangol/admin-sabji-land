@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "image": "./images/profile.png",
+    "customer": "June Wiegand",
+    "contact": "829-381-2997",
+    "address": "Suryabinayak",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 2,
+    "image": "./images/profile.png",
+    "customer": "Bob Gutmann",
+    "contact": "829-301-2997",
+    "address": "Dhobighat",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 3,
+    "image": "./images/profile.png",
+    "customer": "June Wiegand",
+    "contact": "829-388-2997",
+    "address": "Swayambhu",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 4,
+    "image": "./images/profile.png",
+    "customer": "Dairy",
+    "contact": "839-381-2997",
+    "address": "Swayambhu",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 5,
+    "image": "./images/profile.png",
+    "customer": "Spices",
+    "contact": "829-681-2997",
+    "address": "Dhobighat",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 6,
+    "image": "./images/profile.png",
+    "customer": "June Wiegand",
+    "contact": "829-381-0997",
+    "address": "Swayambhu",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 7,
+    "image": "./images/profile.png",
+    "customer": "Bob Gutmann",
+    "contact": "829-381-2997",
+    "address": "Dhobighat",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 8,
+    "image": "./images/profile.png",
+    "customer": "June Wiegand",
+    "contact": "829-181-2997",
+    "address": "Dhobighat",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 9,
+    "image": "./images/profile.png",
+    "customer": "Dairy",
+    "contact": "829-281-2997",
+    "address": "Swayambhu",
+    "date": "Feb 10, 2023 12:52 PM"
+  },
+  {
+    "id": 10,
+    "image": "./images/profile.png",
+    "customer": "Spices",
+    "contact": "829-381-2997",
+    "address": "Suryabinayak",
+    "date": "Feb 10, 2023 12:52 PM"
+  }
+]
