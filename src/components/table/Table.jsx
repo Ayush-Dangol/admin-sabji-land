@@ -9,6 +9,7 @@ import Btns from "../admin/admin-nav/btns";
 const rowSize = 50;
 export default function Table({
   columns,
+  url,
   data,
   searchName,
   searchPlaceholder,
@@ -21,7 +22,7 @@ export default function Table({
 }) {
   const [datas, setdatas] = useState(data);
   const [tableData, setTableData] = useState([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(50);
   const [search, setSearch] = useState("");
   const [paginatedPost, setPaginatedPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,12 +37,12 @@ export default function Table({
   const [perpage, setPerPage] = useState();
 
   useEffect(() => {
-    // console.log(data);
+    console.log(url);
     setTableData(data);
     setPaginatedPosts(
       _(data)
-        .slice((currentPage - 1) * rowSize)
-        .take(rowSize)
+        .slice((currentPage - 1) * selected)
+        .take(selected)
         .value()
     );
   }, [data]);
@@ -64,8 +65,8 @@ export default function Table({
 
   const pagination = (pageNo) => {
     setCurrentPage(pageNo);
-    const startIndex = (pageNo - 1) * rowSize;
-    setPaginatedPosts(_(tableData).slice(startIndex).take(rowSize).value());
+    const startIndex = (pageNo - 1) * selected;
+    setPaginatedPosts(_(tableData).slice(startIndex).take(selected).value());
   };
 
   // const change = (pageNo) => {
@@ -76,11 +77,10 @@ export default function Table({
   // };
 
   const deleteEntry = (id) => {
-    fetch(`http://localhost:4000/tabledata/${id}`, {
+    fetch(`${url}/${id}`, {
       method: "DELETE",
     }).then((result) => {
       result.json().then((resp) => {
-        console.log("resp");
         setrePage(currentPage - 1);
         // setPaginatedPosts(_(tableData).slice(0).take(2).value());
       });
@@ -169,14 +169,7 @@ export default function Table({
 
   const pageCount = tableData ? Math.ceil(tableData.length / rowSize) : 0;
   const pages = _.range(1, pageCount + 1);
-  console.log(pages);
-  const p = () => {
-    pages.map((e) => {
-      console.log(e * rowSize);
-    });
-  };
 
-  p();
   return (
     <>
       <div className={classN}>

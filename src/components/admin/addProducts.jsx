@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
+import UploadImg from "../uploadImage";
 
 // var RNFS = require("react-native-fs");
 const Input = (props) => {
@@ -51,6 +52,24 @@ export default function AddProducts({
   const [porganic, setOrganic] = useState("");
   const [pedible, setEdible] = useState("");
 
+  const ref = useRef();
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        // close(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref]);
+
   useEffect(() => {
     setName(name);
     setImg(image);
@@ -65,9 +84,13 @@ export default function AddProducts({
     setOrganic(organic);
     setEdible(edible);
     setCategory(category);
-    console.log(pname);
+    console.log(pedible);
   }, [id]);
 
+  const setImage = (img) => {
+    setImg(img);
+    return pimg;
+  };
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -76,19 +99,18 @@ export default function AddProducts({
     console.log(dates.slice(3, 21));
 
     const obj = { date: dates.slice(3, 21) };
-    console.log(obj);
     const data = new FormData(event.target);
 
     const value = Object.fromEntries(data.entries());
-
+    const imgData = { image: pimg };
     const lId = { id: lastid + 1 };
     if (call === "POST") {
-      const jsonData = Object.assign(value, obj, lId);
+      const jsonData = Object.assign(value, obj, imgData, lId);
 
       let jsonS = JSON.stringify(jsonData);
 
       fetch(`http://localhost:4000/tabledata`, {
-        method: { call }, // or 'PUT'
+        method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
         },
@@ -96,28 +118,29 @@ export default function AddProducts({
       }).catch((error) => {
         console.error("Error:", error);
       });
-      console.log({ jsonS });
     } else {
-      const jsonData = Object.assign(value, obj);
+      const jsonData = Object.assign(value, obj, imgData);
 
       let jsonS = JSON.stringify(jsonData);
-      console.log(id);
       fetch(`http://localhost:4000/tabledata/${id}`, {
         method: "PUT", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
         },
         body: jsonS,
-      }).catch((error) => {
-        console.error("Error:", error);
-      });
-      console.log({ jsonS });
+      })
+        .then(() => {
+          close(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   }
 
   return (
     <>
-      <div className="add-container">
+      <div className="add-container" ref={ref}>
         <form className="add-product" onSubmit={handleSubmit}>
           <button className="close-add" onClick={close}>
             <AiOutlineClose />
@@ -248,7 +271,9 @@ export default function AddProducts({
                     name="organic"
                     id="organicY"
                     value="Y"
-                    checked={porganic === "Y" ? true : false}
+                    Checked={porganic === "Y" ? true : false}
+                    // checked={porganic === "Y" ? "checked" : ""}
+                    // checked={call === "PUT" && porganic === "Y" ? true : true}
                   />
                   <label htmlFor="organicY">Yes</label>
                   <input
@@ -256,7 +281,10 @@ export default function AddProducts({
                     name="organic"
                     id="organicN"
                     value="N"
-                    checked={porganic === "N" ? true : false}
+                    Checked={porganic === "N" ? true : false}
+                    // checked={call === "PUT" && porganic === "N" ? true : true}
+
+                    // checked={porganic === "N" ? true : false}
                   />
                   <label htmlFor="organicN">No</label>
                 </div>
@@ -269,14 +297,14 @@ export default function AddProducts({
                     type="radio"
                     name="edible"
                     id="edibleY"
-                    checked={pedible === "Y" ? true : false}
+                    // {...(pedible === "Y" ? (checked = true) : "")}
                   />
                   <label htmlFor="edibleY">Yes</label>
                   <input
                     type="radio"
                     name="edible"
                     id="edibleN"
-                    checked={pedible === "N" ? true : false}
+                    // checked={pedible === "N" ? true : false}
                   />
                   <label htmlFor="edibleN">No</label>
                 </div>
@@ -304,12 +332,21 @@ export default function AddProducts({
                 className="add-products-input input-item-text topics"
               ></textarea>
             </div>
-            <button onSubmit={handleSubmit} onClick={close}>
-              submit
-            </button>
+            <button onSubmit={handleSubmit}>submit</button>
           </div>
 
-          <div className="add-products-right"></div>
+          <div className="add-products-right">
+            <p id="imgLink">{pimg}</p>
+            <h3>Upload Images</h3>
+            <UploadImg
+              dimension="234*188"
+              imgClass="add-product-img"
+              containerClass="product-img-container"
+              setMultiple={false}
+              setImg={setImage}
+              dropClass="add-product-drop"
+            />
+          </div>
         </form>
       </div>
     </>

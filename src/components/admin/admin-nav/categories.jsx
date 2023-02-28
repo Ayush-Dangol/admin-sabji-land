@@ -1,6 +1,6 @@
 import Table from "../../table/Table";
 import categories from "../../data/categories.json";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import productFamily from "../../data/productFamily.json";
 import productType from "../../data/productType.json";
 
@@ -9,9 +9,25 @@ function CategoryTable() {
     { label: "#", accessor: "id", sortable: true },
     { label: "Category", accessor: "category", sortable: true },
   ];
-  const data = categories;
+  const [data, setData] = useState();
+  const url = "http://localhost:4001/categories";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Table
+      url={url}
       columns={columns}
       data={data}
       searchName="category"
@@ -26,13 +42,29 @@ function ProductFamily() {
     { label: "#", accessor: "id", sortable: true },
     { label: "Product Family", accessor: "productFamily", sortable: true },
   ];
-  const data = productFamily;
+  const [data, setData] = useState();
+  const url = "http://localhost:4001/productFamily";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Table
       columns={columns}
       data={data}
       searchName="productFamily"
       idNum="id"
+      url={url}
       searchPlaceholder="Search by Product Family"
     />
   );
@@ -44,11 +76,27 @@ function ProductType() {
     { label: "Product Type", accessor: "productType", sortable: true },
     { label: "Product Family", accessor: "productFamily", sortable: true },
   ];
-  const data = productType;
+  const [data, setData] = useState();
+  const url = "http://localhost:4001/productType";
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <Table
       columns={columns}
       data={data}
+      url={url}
       searchName="productType"
       idNum="id"
       searchPlaceholder="Search by Product Type"

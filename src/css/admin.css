@@ -199,6 +199,10 @@
   background-color: white;
 }
 
+.add-product-drop {
+  width: 36.3vw !important;
+}
+
 .input-f {
   display: none;
 }
@@ -269,11 +273,38 @@
   border-radius: 6px;
 }
 
+.table-menu-container {
+  cursor: pointer;
+}
+
+.table-menu {
+  position: relative;
+}
+
+.table-menu ul {
+  list-style-type: none;
+  position: absolute;
+  top: -12px;
+  transform: translateX(-69px);
+  background: white;
+  border-radius: 10px;
+  padding: 7.5px 12px;
+  border: 1px solid rgba(193, 190, 190, 0.6);
+  z-index: 10;
+  transform: translateZ(22px);
+}
+
+.table-menu li {
+  padding: 2.5px;
+  cursor: pointer;
+}
+
 /* for-product */
 
 .add-container {
   display: flex;
   justify-content: center;
+  /* padding: 20px; */
 }
 
 .close-add {
@@ -289,9 +320,9 @@
 }
 
 .add-product {
-  width: 1027px;
+  width: 52vw;
   display: grid;
-  grid-template-columns: 70% 30%;
+  grid-template-columns: 60% 40%;
   position: relative;
   margin: auto;
   background-color: white;
@@ -299,7 +330,17 @@
   border: 1px solid rgba(193, 190, 190, 0.6);
   border-radius: 8px;
   z-index: 10;
+  column-gap: 30px;
   margin-bottom: 50px;
+}
+
+.add-product-img {
+  width: 212px !important;
+  height: 111px !important;
+}
+
+.product-img-container {
+  flex-wrap: wrap-reverse !important;
 }
 
 .add-products-right {
@@ -308,7 +349,8 @@
 
 .product-left-item1 {
   display: grid;
-  gap: 37px;
+  row-gap: 30px;
+  column-gap: 5px;
   grid-template-columns: 50% 50%;
 }
 
@@ -384,7 +426,6 @@
   width: 100%;
   text-align: center;
   margin-bottom: 5%;
-  overflow: hidden;
   padding: 1%;
   padding-bottom: 5%;
   border-collapse: collapse;
@@ -537,7 +578,25 @@ input[type="search" i]:focus {
   user-select: none;
 }
 
-@media (max-width: 750px) {
+@media (max-width: 1250px) {
+  .add-product {
+    column-gap: 5px;
+  }
+
+  .product-left-item1 {
+    grid-template-columns: 100%;
+  }
+
+  .add-products-input {
+    width: 80%;
+  }
+
+  .drop {
+    width: 250px !important;
+  }
+}
+
+@media (max-width: 1150px) {
   .admin-nav {
     width: 0px;
     min-width: 0px;
@@ -551,10 +610,6 @@ input[type="search" i]:focus {
     /* display: none; */
   }
 
-  .ham-admin {
-    display: block;
-  }
-
   .nav-toggle {
     width: 250px !important;
     transform: translateX(0px);
@@ -565,7 +620,26 @@ input[type="search" i]:focus {
     display: flex;
   }
 
+  .ham-admin {
+    display: block;
+  }
+
+  .add-product {
+    width: 90%;
+  }
+}
+
+@media (max-width: 1000px) {
   .table-container {
     width: 95%;
+  }
+
+  .add-product {
+    width: 90%;
+    grid-template-columns: 100%;
+  }
+
+  .add-products-input {
+    width: 100%;
   }
 }

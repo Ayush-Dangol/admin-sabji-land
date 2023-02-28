@@ -79,6 +79,10 @@ export default function Products() {
     setUpdate(true);
   };
 
+  const close = (e) => {
+    setUpdate(e);
+  };
+
   // function ddd() {
   //   setData(tabledata.tabledata);
   // }
@@ -134,6 +138,7 @@ export default function Products() {
           <AddProducts
             name={name}
             unit={unit}
+            image={img}
             discount={discount}
             stock={stock}
             price={rate}
@@ -145,9 +150,7 @@ export default function Products() {
             type={type}
             id={id}
             call="PUT"
-            close={() => {
-              setUpdate(false);
-            }}
+            close={close}
           />
         </div>
       ) : (

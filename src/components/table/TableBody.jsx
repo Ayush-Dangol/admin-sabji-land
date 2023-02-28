@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
 export default function TableBody({
   tableData,
   columns,
@@ -16,6 +19,47 @@ export default function TableBody({
       });
     });
   };
+
+  function Btn(props) {
+    const [show, setShow] = useState(false);
+
+    return (
+      <>
+        <span
+          onClick={() => {
+            setShow(!show);
+          }}
+          className="table-menu-container"
+        >
+          <BsThreeDotsVertical />
+        </span>
+        {show ? (
+          <div className="table-menu">
+            <ul>
+              <li
+                onClick={() => {
+                  del(props.id);
+                }}
+              >
+                Delete
+              </li>
+              <hr />
+              <li
+                onClick={() => {
+                  preFilled(props.id);
+                  update();
+                }}
+              >
+                Update
+              </li>
+            </ul>
+          </div>
+        ) : (
+          ""
+        )}
+      </>
+    );
+  }
 
   return (
     <>
@@ -43,21 +87,7 @@ export default function TableBody({
                 }
               })}
               <td>
-                <button
-                  onClick={() => {
-                    del(data.id);
-                  }}
-                >
-                  delete
-                </button>
-                <button
-                  onClick={() => {
-                    preFilled(data.id);
-                    update();
-                  }}
-                >
-                  update
-                </button>
+                <Btn id={data.id} />
               </td>
             </tr>
           );
