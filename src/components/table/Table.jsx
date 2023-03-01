@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import _ from "lodash";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import Btns from "../admin/admin-nav/btns";
+import Input from "../admin/update/input";
 
 const rowSize = 50;
 export default function Table({
@@ -75,16 +76,43 @@ export default function Table({
   //   const startIndex = (pageNo - 1) * rowSize;
   //   setPaginatedPosts(_(tableData).slice(startIndex).take(rowSize).value());
   // };
-
+  // const updateId = (id) => {
+  //   if (count > 0) {
+  //     data?.slice(id - count).map((e) => {
+  //       const uID = { id: e.id - count };
+  //       let jsonD = Object.assign(e, uID);
+  //       let jsonS = JSON.stringify(jsonD);
+  //       console.log(jsonS);
+  //       fetch(`${url}/${e.id}`, {
+  //         method: "PUT",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: jsonS,
+  //       });
+  //     });
+  //   } else {
+  //     data?.slice(id).map((e) => {
+  //       console.log(e);
+  //     });
+  //   }
+  // };
+  // const [count, setCount] = useState(0);
   const deleteEntry = (id) => {
     fetch(`${url}/${id}`, {
       method: "DELETE",
-    }).then((result) => {
-      result.json().then((resp) => {
-        setrePage(currentPage - 1);
-        // setPaginatedPosts(_(tableData).slice(0).take(2).value());
+    })
+      // .then(
+      //   updateId(id),
+      //   setCount((prevCount) => prevCount + 1),
+      //   console.log(count)
+      // )
+      .then((result) => {
+        result.json().then((resp) => {
+          setrePage(currentPage - 1);
+          // setPaginatedPosts(_(tableData).slice(0).take(2).value());
+        });
       });
-    });
   };
 
   const updateEntry = () => {
@@ -95,13 +123,14 @@ export default function Table({
     const [searchValue, setSearchValue] = useState("");
 
     const submitForm = (e) => {
+      // e.preventDefault();
       setSearch(searchValue);
       const newData = paginatedPost.filter(
         (x) =>
           x[searchName].toLowerCase() ===
           (searchValue.toLowerCase() === ""
             ? x[searchName].toLowerCase()
-            : searchValue)
+            : searchValue.toLowerCase())
       );
 
       if (/^\d+$/.test(searchValue)) {
@@ -112,7 +141,9 @@ export default function Table({
               ? String(x[idNum]).toLowerCase()
               : searchValue)
         );
+        // console.log(idData);
         setPaginatedPosts(idData);
+        console.log(paginatedPost);
       } else {
         setPaginatedPosts(newData);
       }
@@ -125,15 +156,20 @@ export default function Table({
     const clear = () => {
       pagination(currentPage);
       setShowIndex(true);
-      setSelected("");
+      setSelected(50);
     };
 
     return (
       <div className="search-container">
-        <form onSubmit={submitForm}>
+        <form
+          onSubmit={(e) => {
+            submitForm(e);
+          }}
+        >
           <input
             type="search"
             name="tableSearch"
+            value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             className="tablesearch"
             placeholder={searchPlaceholder}

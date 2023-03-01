@@ -13,7 +13,7 @@ export default function Products() {
     { label: "Discount", accessor: "discount", sortable: true },
     { label: "Stock", accessor: "stock", sortable: true },
     { label: "Unit", accessor: "unit", sortable: false },
-    { label: "Product Family", accessor: "family", sortable: false },
+    { label: "Created Date", accessor: "date", sortable: false },
   ];
 
   const [data, setdata] = useState("");

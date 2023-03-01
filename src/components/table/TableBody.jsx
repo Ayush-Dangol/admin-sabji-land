@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 export default function TableBody({
@@ -21,6 +21,24 @@ export default function TableBody({
   };
 
   function Btn(props) {
+    const ref = useRef();
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          setShow(false);
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [ref]);
+
     const [show, setShow] = useState(false);
 
     return (
@@ -35,7 +53,7 @@ export default function TableBody({
         </span>
         {show ? (
           <div className="table-menu">
-            <ul>
+            <ul ref={ref}>
               <li
                 onClick={() => {
                   del(props.id);
@@ -83,6 +101,11 @@ export default function TableBody({
                         <td key={accessor}>{data[accessor]}</td>
                       </>
                     );
+                  }
+                  {
+                    /* if (accessor === "id") {
+                    return <td>{tableData?.indexOf(data) + 1}</td>;
+                  }  */
                   }
                 }
               })}

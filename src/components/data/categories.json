@@ -31,6 +31,11 @@
     {
       "id": 8,
       "category": "Fresh Fruits"
+    },
+    {
+      "category": "vegetables",
+      "date": " Mar 01 2023 17:56",
+      "id": 9
     }
   ],
   "productFamily": [
@@ -69,48 +74,69 @@
     {
       "id": 9,
       "productFamily": "Dairy"
+    },
+    {
+      "productFamily": "organic frutis",
+      "date": " Mar 01 2023 17:57",
+      "id": 10
+    },
+    {
+      "productFamily": "apple",
+      "date": " Mar 01 2023 17:58",
+      "id": 11
+    },
+    {
+      "productFamily": "cc",
+      "date": " Mar 01 2023 18:01",
+      "id": 13
+    },
+    {
+      "productFamily": "nano",
+      "date": " Mar 01 2023 21:40",
+      "id": 14
     }
   ],
   "productType": [
     {
       "id": 1,
-      "productType": "Fresh Vegetables"
+      "productType": "Fresh Vegetables",
+      "productFamily": ""
     },
     {
-      "id": 2,
-      "productType": "Spices"
+      "productType": "herb",
+      "date": " Mar 01 2023 21:07",
+      "id": 2
     },
     {
       "id": 3,
-      "productType": "Fresh Fruits"
+      "productType": "Fresh Fruits",
+      "productFamily": ""
     },
     {
       "id": 4,
-      "productType": "Dairy"
+      "productType": "Dairy",
+      "productFamily": ""
     },
     {
       "id": 5,
-      "productType": "Fresh Fruits"
+      "productType": "Fresh Fruits",
+      "productFamily": ""
     },
     {
       "id": 6,
-      "productType": "Organic Honey"
+      "productType": "Organic Honey",
+      "productFamily": ""
     },
     {
       "id": 7,
-      "productType": "Fresh Vegetables"
+      "productType": "Fresh Vegetables",
+      "productFamily": ""
     },
     {
-      "id": 8,
-      "productType": "Fresh Fruits"
-    },
-    {
-      "id": 9,
-      "productType": "Dairy"
-    },
-    {
-      "id": 10,
-      "productType": "Spices"
+      "productType": "Fresh Fruits",
+      "productFamily": "h",
+      "date": " Mar 01 2023 21:40",
+      "id": 8
     }
   ]
 }

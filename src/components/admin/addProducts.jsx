@@ -1,24 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import UploadImg from "../uploadImage";
-
+import Input from "./update/input";
 // var RNFS = require("react-native-fs");
-const Input = (props) => {
-  return (
-    <div className="input-items">
-      <label htmlFor={props.id}>{props.data}</label>
-      <input
-        type={props.type}
-        className={`add-products-input ${props.class}`}
-        name={props.name}
-        id={props.id}
-        placeholder={props.placeholder}
-        value={props.value}
-        onChange={props.change}
-      />
-    </div>
-  );
-};
+
 export default function AddProducts({
   name,
   image,
