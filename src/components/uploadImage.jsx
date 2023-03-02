@@ -133,7 +133,7 @@ export default function UploadImg({
     <div className={`add-ad ${containerClass}`}>
       {showImage(selectedImage)}
 
-      <div className={`drop ${dropClass}`} onDragEnter={handleDrag}>
+      <div className={`drop-img ${dropClass}`} onDragEnter={handleDrag}>
         <input
           ref={inputRef}
           type="file"

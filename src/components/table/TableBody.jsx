@@ -42,21 +42,21 @@ export default function TableBody({
     const [show, setShow] = useState(false);
 
     return (
-      <>
+      <div ref={ref} className="table-menu-container">
         <span
           onClick={() => {
             setShow(!show);
           }}
-          className="table-menu-container"
         >
           <BsThreeDotsVertical />
         </span>
         {show ? (
           <div className="table-menu">
-            <ul ref={ref}>
+            <ul>
               <li
                 onClick={() => {
                   del(props.id);
+                  setShow(false);
                 }}
               >
                 Delete
@@ -66,6 +66,7 @@ export default function TableBody({
                 onClick={() => {
                   preFilled(props.id);
                   update();
+                  setShow(false);
                 }}
               >
                 Update
@@ -75,7 +76,7 @@ export default function TableBody({
         ) : (
           ""
         )}
-      </>
+      </div>
     );
   }
 

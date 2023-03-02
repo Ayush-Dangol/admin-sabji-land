@@ -12,7 +12,7 @@
       "family": "e",
       "type": "t",
       "pDesc": "",
-      "date": " Feb 28 2023 17:20",
+      "date": " Mar 02 2023 19:38",
       "image": "blob:http://localhost:3000/26a844f9-8de3-4494-8498-1fa22f461a7f",
       "id": 1
     },
@@ -2070,52 +2070,6 @@
       "pDesc": "",
       "date": " Feb 28 2023 17:04",
       "id": 201
-    },
-    {
-      "name": "Fresh banana",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Feb 28 2023 17:05",
-      "id": 202
-    },
-    {
-      "name": "Fresh Cababge",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Feb 28 2023 17:32",
-      "image": "blob:http://localhost:3000/687538d2-a060-4e66-81fc-0fb89202ba56",
-      "id": 203
-    },
-    {
-      "name": "",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Feb 28 2023 18:44",
-      "id": 204
     }
   ]
 }

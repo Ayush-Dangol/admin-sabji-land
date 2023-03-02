@@ -33,9 +33,9 @@ export default function Products() {
   const [organic, setOrganic] = useState("");
   const [edible, setEdible] = useState("");
 
-  useEffect(() => {
-    const url = "http://localhost:4000/tabledata";
+  const url = "http://localhost:4000/tabledata";
 
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
@@ -122,6 +122,7 @@ export default function Products() {
       )}
 
       <Table
+        url={url}
         columns={columns}
         data={data}
         searchName="name"

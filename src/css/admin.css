@@ -113,7 +113,7 @@ button {
 .nav-close span {
   cursor: pointer;
 }
-/* .drop input {
+/* . input {
   border: solid green;
   display: block;
 } */
@@ -195,7 +195,7 @@ button {
   width: 98%;
 }
 
-.drop {
+.drop-img {
   border: 1px dashed rgba(93, 96, 109, 0.4);
   width: 386.67px !important;
   height: 196.67px;
@@ -283,6 +283,7 @@ button {
 
 .table-menu-container {
   cursor: pointer;
+  width: min-content;
 }
 
 .table-menu {
