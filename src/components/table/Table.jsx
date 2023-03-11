@@ -187,14 +187,19 @@ export default function Table({
     );
   };
 
+  const pageCount = tableData ? Math.ceil(tableData.length / rowSize) : 0;
+  const pages = _.range(1, pageCount + 1);
+  const newCount = tableData ? Math.ceil(tableData.length / selected) : 0; //for calculating pages after changing rowSize
+
   const fIndex = () => {
-    const x = paginatedPost.at(0);
-    return <span>{x?.id}</span>;
+    const x = (currentPage - 1) * selected + 1;
+    console.log(pages);
+    return <span>{x}</span>;
   };
 
   const lIndex = () => {
-    const x = paginatedPost.at(-1);
-    return <span>{x?.id}</span>;
+    const x = (currentPage - 1) * selected + paginatedPost.length;
+    return <span>{x}</span>;
   };
 
   const changes = (e) => {
@@ -202,9 +207,7 @@ export default function Table({
     const startIndex = (currentPage - 1) * rowSize;
     setPaginatedPosts(_(tableData).slice(startIndex).take(e).value());
   };
-
-  const pageCount = tableData ? Math.ceil(tableData.length / rowSize) : 0;
-  const pages = _.range(1, pageCount + 1);
+  console.log(selected);
 
   return (
     <>
@@ -247,14 +250,16 @@ export default function Table({
           </span>
           <span>
             <button
-              onClick={() => pagination(currentPage - 1)}
+              onClick={() => {
+                pagination(currentPage - 1);
+              }}
               disabled={currentPage > 1 ? "" : true}
             >
               <AiOutlineLeft />
             </button>
             <button
               onClick={() => pagination(currentPage + 1)}
-              disabled={currentPage < pageCount ? "" : true}
+              disabled={currentPage < newCount ? "" : true}
             >
               <AiOutlineRight />
             </button>
