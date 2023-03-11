@@ -166,7 +166,7 @@ export default function AddProducts({
                   name="unit"
                   data="Unit type"
                   id=""
-                  className="add-products-input"
+                  className="add-products-input input-select"
                   value={punit}
                   onChange={(e) => setUnit(e.target.value)}
                 >
@@ -197,7 +197,7 @@ export default function AddProducts({
                   name="category"
                   data="Product Category"
                   id=""
-                  className="add-products-input"
+                  className="add-products-input input-select"
                   value={pcategory}
                   onChange={(e) => setCategory(e.target.value)}
                 >
@@ -211,7 +211,7 @@ export default function AddProducts({
                   name="package"
                   data="Product Packages"
                   id=""
-                  className="add-products-input"
+                  className="add-products-input input-select"
                   value={ppackage}
                   onChange={(e) => setPackage(e.target.value)}
                 >
@@ -225,7 +225,7 @@ export default function AddProducts({
                   name="family"
                   data="Product Family"
                   id=""
-                  className="add-products-input"
+                  className="add-products-input input-select"
                   value={pfamily}
                   onChange={(e) => setFamily(e.target.value)}
                 >
@@ -239,7 +239,7 @@ export default function AddProducts({
                   name="type"
                   data="Product Type"
                   id=""
-                  className="add-products-input"
+                  className="add-products-input input-select"
                   value={ptype}
                   onChange={(e) => setType(e.target.value)}
                 >

@@ -1,8 +1,5 @@
 import Table from "../../table/Table";
-import categories from "../../data/categories.json";
-import { useEffect, useRef, useState } from "react";
-import productFamily from "../../data/productFamily.json";
-import productType from "../../data/productType.json";
+import { useEffect, useState } from "react";
 import AddCategory from "../update/addCategory";
 
 export default function Categories() {
@@ -157,7 +154,7 @@ export default function Categories() {
         ""
       )}
       <div className={add || update ? "category-container" : ""}>
-        <div className={add || update ? "category-dim" : ""}></div>
+        <div className={add || update ? "dim-bg" : ""}></div>
         <h1>Category</h1>
 
         <ul className="category-nav">

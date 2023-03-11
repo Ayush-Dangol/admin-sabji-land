@@ -369,12 +369,30 @@ button {
 }
 
 .add-products-input {
-  width: 90%;
+  width: 82%;
   height: 54px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   /* padding: auto 5% !important; */
+}
+
+.add-products-input:focus-visible {
+  outline: none !important;
+}
+
+input {
+  padding: 1px 15px;
+}
+
+.input-select {
+  /* border: solid red; */
+  width: 93% !important;
+}
+
+select {
+  padding: 1px 15px;
+  padding-right: 30px !important;
 }
 
 /* input[type="text" i],
@@ -547,7 +565,7 @@ input[type="number" i] {
 }
 
 #name,
-#customer {
+#user {
   /* border: solid red; */
   text-align: start;
 }
@@ -646,7 +664,7 @@ input[type="search" i]:focus {
   pointer-events: none;
 }
 
-.category-dim {
+.dim-bg {
   background: rgba(0, 0, 0, 0.5);
   z-index: 14;
   position: fixed;
@@ -665,6 +683,43 @@ input[type="search" i]:focus {
 .add-family select {
   width: 335px !important;
 }
+
+/* for customer */
+
+.add-customer-container {
+  z-index: 15;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 1px #5d606d !important;
+  /* border: solid red; */
+  width: 50%;
+  border-radius: 10px;
+}
+
+.add-customer {
+  position: relative;
+  width: 95%;
+  padding: 25px 20px 45px 55px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.add-save {
+  width: 102px;
+  height: 47px;
+  background: #be4217;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 7px;
+  border: none;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  margin-top: 30px;
+}
+
 @media (max-width: 1250px) {
   .add-product {
     column-gap: 5px;
