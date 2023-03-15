@@ -18,7 +18,7 @@ export default function Table({
   preFilled,
   add,
   update,
-  ex,
+  fileName,
   classN,
 }) {
   const [datas, setdatas] = useState(data);
@@ -160,27 +160,29 @@ export default function Table({
     };
 
     return (
-      <div className="search-container">
-        <form
-          onSubmit={(e) => {
-            submitForm(e);
-          }}
-        >
-          <input
-            type="search"
-            name="tableSearch"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="tablesearch"
-            placeholder={searchPlaceholder}
-          />
-        </form>
-        <button onClick={clear} className="clear-search">
-          Clear
-        </button>
+      <div className="top-container">
+        <div className="search-container">
+          <form
+            onSubmit={(e) => {
+              submitForm(e);
+            }}
+          >
+            <input
+              type="search"
+              name="tableSearch"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              className="tablesearch"
+              placeholder={searchPlaceholder}
+            />
+          </form>
+          <button onClick={clear} className="clear-search">
+            Clear
+          </button>
+        </div>
 
         <div>
-          <Btns add={add} ex={ex} />
+          <Btns add={add} ex={data} fileName={fileName} />
         </div>
         {/* <button onClick={change(currentPage - 1)}>a</button> */}
       </div>

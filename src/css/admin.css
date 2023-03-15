@@ -553,6 +553,11 @@ input[type="number" i] {
   cursor: pointer;
 }
 
+.top-container {
+  display: flex;
+  justify-content: space-between;
+}
+
 .search-container {
   display: flex;
 }

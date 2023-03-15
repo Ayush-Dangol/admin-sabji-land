@@ -130,6 +130,7 @@ export default function Products() {
         searchPlaceholder="Search by Product Name"
         preFilled={preFilled}
         add={toggleAdd}
+        fileName="products"
         update={toggleUpdate}
         classN={add || update ? "table-section" : ""}
       />

@@ -205,6 +205,13 @@ export default function Categories() {
                 : "productType"
             }
             idNum="id"
+            fileName={
+              seeCategory
+                ? "category"
+                : pFamily
+                ? "productFamily"
+                : "productType"
+            }
             add={toggleAdd}
             update={toggleUpdate}
             searchPlaceholder={

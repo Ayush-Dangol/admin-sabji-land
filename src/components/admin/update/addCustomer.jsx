@@ -23,13 +23,6 @@ export default function AddCustomers({
   const [sNumb, setSNumb] = useState();
   const [email, setEmail] = useState();
   const [img, setImg] = useState();
-  const [pcategory, setCategory] = useState("");
-  const [ppackage, setPackage] = useState("");
-  const [pfamily, setFamily] = useState("");
-  const [ptype, setType] = useState("");
-  const [porganic, setOrganic] = useState("");
-  const [pedible, setEdible] = useState("");
-
   const ref = useRef();
   useEffect(() => {
     console.log(type);
@@ -61,12 +54,12 @@ export default function AddCustomers({
     setImg(img);
     return img;
   };
+
   function handleSubmit(event) {
     event.preventDefault();
 
     const date = new Date();
     const dates = String(date);
-    console.log(dates.slice(3, 21));
 
     const obj = { date: dates.slice(3, 21) };
     const data = new FormData(event.target);
