@@ -1,3 +1,6 @@
+import { icons } from "react-icons";
+import { AiOutlineFileText } from "react-icons/ai";
+
 const downloadFile = ({ data, fileName, fileType }) => {
   // Create a blob with the data we want to download as a file
   const blob = new Blob([data], { type: fileType });
@@ -26,7 +29,10 @@ const ExportFile = ({ data, name, exClass }) => {
 
   return (
     <button onClick={exportJson} className={`btns btns-ex ${exClass}`}>
-      Export
+      Export{" "}
+      <span>
+        <AiOutlineFileText />
+      </span>
     </button>
   );
 };

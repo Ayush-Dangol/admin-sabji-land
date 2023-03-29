@@ -15,7 +15,7 @@ export default function Products() {
     { label: "Unit", accessor: "unit", sortable: false },
     { label: "Created Date", accessor: "date", sortable: true },
   ];
-
+  const [urlData, setUrlData] = useState("tabledata");
   const [data, setdata] = useState("");
   const [img, setImg] = useState("");
   const [id, setId] = useState(1);
@@ -33,7 +33,7 @@ export default function Products() {
   const [organic, setOrganic] = useState("");
   const [edible, setEdible] = useState("");
 
-  const url = "http://localhost:4000/tabledata";
+  const url = `http://localhost:4000/${urlData}`;
 
   useEffect(() => {
     const fetchData = async () => {

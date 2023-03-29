@@ -24,7 +24,6 @@ button {
 .profile-details {
   margin-top: 2%;
   /* display: flex; */
-  border: solid red;
   /* width: fit-content; */
   max-width: 180px;
   display: grid;
@@ -432,8 +431,9 @@ input[type="number" i] {
   background: #be4217;
 }
 
-.btns-add span {
-  font-size: 1.4rem;
+.btns-add span,
+.btns-ex span {
+  font-size: 1.2rem;
   display: flex;
   justify-content: center;
   /* padding-top: 5%; */
@@ -738,6 +738,10 @@ input[type="search" i]:focus {
     width: 80%;
   }
 
+  .input-select {
+    width: 87% !important;
+  }
+
   .drop {
     width: 250px !important;
   }
@@ -787,6 +791,10 @@ input[type="search" i]:focus {
   }
 
   .add-products-input {
-    width: 98%;
+    width: 95%;
+  }
+
+  .input-select {
+    width: 100% !important;
   }
 }

@@ -3,7 +3,7 @@ import {
   MdSpaceDashboard,
   MdOutlinePayments,
   MdOutlineRateReview,
-  MdOutlineDirectionsBike
+  MdOutlineDirectionsBike,
 } from "react-icons/md";
 import { BiHomeAlt } from "react-icons/bi";
 import { TfiMenuAlt } from "react-icons/tfi";
@@ -107,14 +107,14 @@ export default function AdminNav() {
             >
               <AiOutlineFileDone /> Order Details
             </Navitem>
-            <Navitem
+            {/* <Navitem
               click={() => {
                 handleToggle();
               }}
               to="/payment"
             >
               <MdOutlinePayments /> Payment Details
-            </Navitem>
+            </Navitem> */}
             <Navitem
               click={() => {
                 handleToggle();
@@ -123,14 +123,14 @@ export default function AdminNav() {
             >
               <MdOutlineRateReview /> Reviews
             </Navitem>
-            <Navitem
+            {/* <Navitem
               click={() => {
                 handleToggle();
               }}
               to="/employeedetails"
             >
               <FaUserTie /> Employee Details
-            </Navitem>
+            </Navitem> */}
             <Navitem
               click={() => {
                 handleToggle();
