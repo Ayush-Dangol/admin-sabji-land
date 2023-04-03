@@ -1,7 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Payment from "./payment";
 import Reviews from "../../Admin-Samyak/Review/Reviews";
-import Employee from "./employeedetails";
 import Dashboard from "./dashboard";
 import Home from "./homepage";
 import Categories from "./categories";
@@ -19,11 +17,11 @@ export default function AdminRoute() {
         <Route path="/homepage" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/admin2" element={<Admin2 />} />
+        <Route path="/customerdetails" element={<Customers />} />
         <Route path="/orderdetails" element={<Order />} />
-        <Route path="/payment" element={<Payment />} />
+        {/* <Route path="/payment" element={<Payment />} /> */}
         <Route path="/reviews" element={<Reviews />} />
-        <Route path="/employeedetails" element={<Employee />} />
+        <Route path="/admin2" element={<Admin2 />} />
         <Route path="/riderdetails" element={<Rider />} />
       </Routes>
     </div>

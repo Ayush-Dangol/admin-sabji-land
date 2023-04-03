@@ -95,7 +95,7 @@ export default function AdminNav() {
               click={() => {
                 handleToggle();
               }}
-              to="/admin2"
+              to="/customerdetails"
             >
               <FaUserAlt /> Customer Details
             </Navitem>
@@ -123,14 +123,14 @@ export default function AdminNav() {
             >
               <MdOutlineRateReview /> Reviews
             </Navitem>
-            {/* <Navitem
+            <Navitem
               click={() => {
                 handleToggle();
               }}
-              to="/employeedetails"
+              to="/admin2"
             >
-              <FaUserTie /> Employee Details
-            </Navitem> */}
+              <FaUserTie /> Admin Details
+            </Navitem>
             <Navitem
               click={() => {
                 handleToggle();
