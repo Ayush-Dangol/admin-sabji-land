@@ -163,7 +163,7 @@ export default function Customers() {
        */}
       <div className={add || update ? "category-container" : ""}>
         <div className={add || update ? "dim-bg" : ""}></div>
-        <h1>Customer Details</h1>
+        <h1 className="admin-title">Customer Details</h1>
         <ul className="category-nav">
           <li
             onClick={() => {

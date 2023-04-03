@@ -155,7 +155,7 @@ export default function Categories() {
       )}
       <div className={add || update ? "category-container" : ""}>
         <div className={add || update ? "dim-bg" : ""}></div>
-        <h1>Category</h1>
+        <h1 className="admin-title">Category</h1>
 
         <ul className="category-nav">
           <li

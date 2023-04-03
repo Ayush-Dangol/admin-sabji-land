@@ -21,6 +21,10 @@ button {
   border-radius: 50%;
 }
 
+.admin-title {
+  color: rgba(0, 0, 0, 0.8);
+}
+
 .profile-details {
   margin-top: 2%;
   /* display: flex; */
@@ -81,7 +85,7 @@ button {
 
 .admin-nav {
   position: relative;
-  z-index: 10;
+  z-index: 1;
   width: 215px;
   padding: 35px;
   transition: 0.3s ease;
@@ -450,6 +454,15 @@ input[type="number" i] {
   border-radius: 8px;
   width: 94%;
   padding: 1% 2%;
+  min-width: 550px;
+}
+
+.table-container th {
+  padding: 18px 0;
+}
+
+.table-container td {
+  padding: 18px 0 20px 0;
 }
 
 .react-table {
@@ -742,7 +755,7 @@ input[type="search" i]:focus {
     width: 87% !important;
   }
 
-  .drop {
+  .drop-img {
     width: 250px !important;
   }
 }
@@ -781,7 +794,7 @@ input[type="search" i]:focus {
 }
 
 @media (max-width: 1000px) {
-  .table-container {
+  .admin-table-container {
     width: 95%;
   }
 

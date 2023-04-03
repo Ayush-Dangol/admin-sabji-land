@@ -18,6 +18,10 @@ const nav = [
     {
         id: 5,
         text: "Cancelled"
+    },
+    {
+        id: 5,
+        text: "Being Delivered"
     }
 ]
 

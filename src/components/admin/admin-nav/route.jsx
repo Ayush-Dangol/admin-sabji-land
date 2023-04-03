@@ -9,6 +9,7 @@ import Products from "./products";
 import Customers from "./customerdetails";
 import Order from "../../Admin-Samyak/Order/OrderDetails";
 import Rider from "../../Admin-Samyak/Rider/Rider";
+import Admin2 from "../../Admin-Samyak/Admin2/Admin";
 
 export default function AdminRoute() {
   return (
@@ -18,7 +19,7 @@ export default function AdminRoute() {
         <Route path="/homepage" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/customerdetails" element={<Customers />} />
+        <Route path="/admin2" element={<Admin2 />} />
         <Route path="/orderdetails" element={<Order />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/reviews" element={<Reviews />} />

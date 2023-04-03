@@ -70,7 +70,7 @@ function AddOrder(props) {
                                                     </div>
                                                 </td>
                                                 <td>Rs. {dataT.subtotal}</td>
-                                                <td className="trashcan"><button><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none"><path stroke="#FF3434" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.984 6.133h18M19.984 6.133v14a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2v-14m3 0v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10.984 11.133v6M14.984 11.133v6" /></svg></button></td>
+                                                <td className="trashcan"><button><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none"><path stroke="#FF3434" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3.984 6.133h18M19.984 6.133v14a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2v-14m3 0v-2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10.984 11.133v6M14.984 11.133v6" /></svg></button></td>
                                             </tr>
                                         )
                                     })}

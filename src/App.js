@@ -1,7 +1,7 @@
 import AdminNav from "./components/admin/admin-nav/admin-nav";
 import AdminRoute from "./components/admin/admin-nav/route";
 import Img from "./components/admin/img";
-import "./css/admin.css";
+import "./css/admin-main.css";
 
 export default function App() {
   return (

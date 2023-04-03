@@ -102,7 +102,7 @@ export default function Products() {
 
   return (
     <div>
-      <h1>Products</h1>
+      <h1 className="admin-title">Products</h1>
       {/* <Table /> */}
 
       {add ? (

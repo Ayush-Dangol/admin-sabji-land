@@ -12,14 +12,14 @@ function RiderAdd(props) {
     console.log(file);
   }
 
-  function displayImg(img) {
-    <img src="img" alt="document" height="100px" width="100px" />;
+  function DeleteImg(id) {
+    setFile(file.filter((url, index) => index != id));
+    console.log(id);
   }
 
   return (
     <div className="pop-container">
       <div className="addR-container">
-        {/* added props.click to close RiderAdd */}
         <div className="close-btn">
           <button onClick={props.click}>
             <svg
@@ -55,6 +55,15 @@ function RiderAdd(props) {
           <div className="addR-right">
             <span className="upload-text">Upload Documents</span>
             <div className="border-d">
+              <label>
+                <Input
+                  class="custom-file-input"
+                  onChange={handleChange}
+                  type="file"
+                  title="text"
+                  accept="image/jpg, image/jpeg, image/png, application/pdf"
+                ></Input>
+              </label>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="34"
@@ -80,21 +89,49 @@ function RiderAdd(props) {
               <span className="support-text">
                 Files supported: Png, Jpg, Pdf
               </span>
-              <Input
-                class="custom-file-input"
-                onChange={handleChange}
-                type="file"
-                accept="image/jpg, image/jpeg, image/png, application/pdf"
-              >
-                Choose file
-              </Input>
+
+              <span className="choose-file">Choose File</span>
               <span className="size-text">Maximum size: 1MB</span>
             </div>
             <span className="added-text">Added Documents</span>
             <div className="added-doc">
-              {file.map(() => {
+              {file.map((url, index) => {
                 return (
-                  <img src={file} alt="documents" height="50px" width="50px" />
+                  <>
+                    <img
+                      src={url}
+                      key={index}
+                      alt="documents"
+                      height="72px"
+                      width="72px"
+                    />
+                    <svg
+                      id={index}
+                      onClick={() => DeleteImg(index)}
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                    >
+                      <g
+                        stroke="#BE4217"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        clip-path="url(#a)"
+                      >
+                        <path
+                          fill="#fff"
+                          d="M8 14.666A6.667 6.667 0 1 0 8 1.333a6.667 6.667 0 0 0 0 13.333Z"
+                        />
+                        <path d="m10 6-4 4M6 6l4 4" />
+                      </g>
+                      <defs>
+                        <clipPath id="a">
+                          <path fill="#fff" d="M0 0h16v16H0z" />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </>
                 );
               })}
             </div>

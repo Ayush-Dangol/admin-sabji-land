@@ -321,7 +321,6 @@ export default function AddProducts({
           </div>
 
           <div className="add-products-right">
-            <p id="imgLink">{pimg}</p>
             <h3>Upload Images</h3>
             <UploadImg
               dimension="234*188"

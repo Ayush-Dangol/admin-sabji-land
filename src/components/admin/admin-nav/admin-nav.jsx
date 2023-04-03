@@ -95,7 +95,7 @@ export default function AdminNav() {
               click={() => {
                 handleToggle();
               }}
-              to="/customerdetails"
+              to="/admin2"
             >
               <FaUserAlt /> Customer Details
             </Navitem>
