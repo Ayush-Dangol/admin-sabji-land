@@ -44,7 +44,7 @@ export default function AddProducts({
      */
     function handleClickOutside(event) {
       if (ref.current && !ref.current.contains(event.target)) {
-        // close(false);
+        close(!close);
       }
     }
     // Bind the event listener
@@ -69,7 +69,7 @@ export default function AddProducts({
     setOrganic(organic);
     setEdible(edible);
     setCategory(category);
-    console.log(pedible);
+    console.log(pimg);
   }, [id]);
 
   const setImage = (img) => {
@@ -176,6 +176,29 @@ export default function AddProducts({
               </div>
 
               <Input
+                type="number"
+                name="rate"
+                data="Price per unit"
+                placeholder="Amount"
+                value={prate}
+                change={(e) => setRate(e.target.value)}
+              />
+              <div className="input-items">
+                <label htmlFor="">Unit Type</label>
+                <select
+                  name="unit"
+                  data="Unit type"
+                  id=""
+                  className="add-products-input input-select"
+                  value={punit}
+                  onChange={(e) => setUnit(e.target.value)}
+                >
+                  <option value="KG">KG</option>
+                  <option value="G">G</option>
+                </select>
+              </div>
+
+              <Input
                 type="text"
                 name="discount"
                 data="Discount"
@@ -191,6 +214,7 @@ export default function AddProducts({
                 change={(e) => setStock(e.target.value)}
                 placeholder="Stock input number (100)"
               />
+
               <div className="input-items">
                 <label htmlFor="">Product Category</label>
                 <select
@@ -328,8 +352,10 @@ export default function AddProducts({
               containerClass="product-img-container"
               setMultiple={false}
               setImg={setImage}
+              oldImg={pimg}
               dropClass="add-product-drop"
             />
+            {console.log(setImage)}
           </div>
         </form>
       </div>

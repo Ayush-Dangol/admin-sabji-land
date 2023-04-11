@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "user": "John Cena",
+      "user": "John",
       "contact": "1234567891",
       "address": "Suryabinayak",
       "secNum": "",
       "email": "abc@gmail.com",
-      "date": " Mar 11 2023 14:50",
+      "date": " Apr 11 2023 13:05",
       "id": 1
     },
     {
@@ -72,15 +72,6 @@
       "contact": "8292812997",
       "address": "Swayambhu",
       "date": "Feb 11 2023 7:36"
-    },
-    {
-      "user": "John Cena",
-      "contact": "1234567891",
-      "address": "Lalitpur",
-      "secNum": "",
-      "email": "dfgh@gmail.com",
-      "date": " Mar 11 2023 14:51",
-      "id": 11
     }
   ],
   "guests": [
@@ -155,24 +146,6 @@
       "contact": "8293812997",
       "address": "Suryabinayak",
       "date": "Feb 10, 2023 12:52 PM"
-    },
-    {
-      "guest": "John Cena",
-      "contact": "1234567891",
-      "address": "Lalitpur",
-      "secNum": "",
-      "email": "dfgh@gmail.com",
-      "date": " Mar 11 2023 15:54",
-      "id": 11
-    },
-    {
-      "guest": "John Cena",
-      "contact": "1234567891",
-      "address": "Lalitpur",
-      "secNum": "",
-      "email": "dfgh@gmail.com",
-      "date": " Mar 11 2023 18:06",
-      "id": 12
     }
   ]
 }

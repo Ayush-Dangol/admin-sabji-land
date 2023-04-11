@@ -16,13 +16,27 @@ export default function AddCategory({
   const [category, setCategory] = useState("");
   const [family, setFamily] = useState("");
   const [type, setType] = useState("");
-
+  const [data, setData] = useState([]);
+  const productUrl = `http://localhost:4001/productFamily`;
   useEffect(() => {
     setCategory(oldCategory);
     setFamily(oldFamily);
     setType(oldType);
   }, [id]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(productUrl);
+        const json = await response.json();
+        setData(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
   const ref = useRef();
   useEffect(() => {
     /**
@@ -142,8 +156,13 @@ export default function AddCategory({
                 value={family}
                 onChange={(e) => setFamily(e.target.value)}
               >
-                <option value="t">t</option>
-                <option value="h">h</option>
+                {data?.map((e) => {
+                  return (
+                    <option value={e.productFamily}>{e.productFamily}</option>
+                  );
+                })}
+                {/* <option value="t">t</option>
+                <option value="h">h</option> */}
               </select>
             </div>
           ) : (

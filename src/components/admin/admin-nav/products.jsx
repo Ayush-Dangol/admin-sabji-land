@@ -55,7 +55,7 @@ export default function Products() {
 
   const preFilled = (sno) => {
     setId(sno);
-    console.log(sno);
+    console.log(img);
     let item = data[sno - 1];
     console.log(item);
     setImg(item?.image);
@@ -102,6 +102,7 @@ export default function Products() {
 
   return (
     <div>
+      <div className={add || update ? "dim-bg" : ""}></div>
       <h1 className="admin-title">Products</h1>
       {/* <Table /> */}
 
@@ -120,21 +121,6 @@ export default function Products() {
       ) : (
         ""
       )}
-
-      <Table
-        url={url}
-        columns={columns}
-        data={data}
-        searchName="name"
-        idNum="id"
-        searchPlaceholder="Search by Product Name"
-        preFilled={preFilled}
-        add={toggleAdd}
-        fileName="products"
-        update={toggleUpdate}
-        classN={add || update ? "table-section" : ""}
-      />
-
       {update ? (
         <div>
           <AddProducts
@@ -158,6 +144,20 @@ export default function Products() {
       ) : (
         ""
       )}
+
+      <Table
+        url={url}
+        columns={columns}
+        data={data}
+        searchName="name"
+        idNum="id"
+        searchPlaceholder="Search by Product Name"
+        preFilled={preFilled}
+        add={toggleAdd}
+        fileName="products"
+        update={toggleUpdate}
+        classN={add || update ? "table-section" : ""}
+      />
     </div>
   );
 }

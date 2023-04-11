@@ -236,8 +236,9 @@ button {
   border-radius: 5px;
   margin: 14px auto 8px;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
   padding: 9px 15px;
+  pointer-events: none;
 }
 
 #label-file-upload {
@@ -315,7 +316,16 @@ button {
 
 .add-container {
   display: flex;
+  width: fit-content;
   justify-content: center;
+  position: relative;
+  z-index: 15;
+  /* 
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
   /* padding: 20px; */
 }
 
@@ -645,7 +655,7 @@ input[type="search" i]:focus {
 }
 
 .add-category-input {
-  width: 325px !important;
+  width: 302px !important;
   margin-top: 5%;
 }
 

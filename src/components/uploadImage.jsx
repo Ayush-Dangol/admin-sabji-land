@@ -5,6 +5,7 @@ export default function UploadImg({
   imgClass,
   containerClass,
   setImg,
+  oldImg,
   setMultiple,
   dimension,
   dropClass,
@@ -18,9 +19,13 @@ export default function UploadImg({
 
   const [count, setCount] = useState(5);
 
-  const [show, setShow] = useState(false);
-
   const [selectedImage, setSelectedImage] = useState([]);
+
+  useEffect(() => {
+    if (oldImg) {
+      setSelectedImage(oldImg);
+    }
+  }, [selectedImage]);
 
   const handleImg = (e) => {
     if (e) {
@@ -40,18 +45,37 @@ export default function UploadImg({
 
   let ref = useRef();
 
-  useEffect(() => {
-    if (setImg) {
-      setImg(selectedImage[0]);
-    }
-  }, [selectedImage]);
-
   const showImage = (source) => {
     return source?.map((image) => {
       const removeImg = () => {
         source?.splice(source?.indexOf(image), 1);
         setCount(count - 1);
-        console.log(source);
+        // console.log(source);
+      };
+
+      const ImgMenu = () => {
+        const [show, setShow] = useState(false);
+
+        return (
+          <>
+            <button onClick={() => setShow(!show)}>...</button>
+            {show ? (
+              <>
+                <ul ref={ref}>
+                  <li
+                    onClick={() => {
+                      removeImg();
+                    }}
+                  >
+                    Delete
+                  </li>
+                </ul>
+              </>
+            ) : (
+              ""
+            )}
+          </>
+        );
       };
 
       return (
@@ -60,22 +84,8 @@ export default function UploadImg({
             <>
               <div className="img-head">
                 <h1 className="img-title">Image {source.indexOf(image) + 1}</h1>
-                <button onClick={() => setShow(!show)}>...</button>
-                {show ? (
-                  <>
-                    <ul ref={ref}>
-                      <li
-                        onClick={() => {
-                          removeImg();
-                        }}
-                      >
-                        Delete
-                      </li>
-                    </ul>
-                  </>
-                ) : (
-                  ""
-                )}
+
+                <ImgMenu />
               </div>
               <img
                 src={image}
