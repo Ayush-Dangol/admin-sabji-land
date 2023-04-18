@@ -1,36 +1,14 @@
 {
   "categories": [
     {
-      "id": 1,
-      "category": "Organic Honey"
+      "category": "apple",
+      "date": " Apr 16 2023 22:00",
+      "id": "djkjscsbsi"
     },
     {
-      "id": 2,
-      "category": "Fresh Vegetables"
-    },
-    {
-      "id": 3,
-      "category": "Fresh Fruits"
-    },
-    {
-      "id": 4,
-      "category": "Dairy"
-    },
-    {
-      "id": 5,
-      "category": "Spices"
-    },
-    {
-      "id": 6,
-      "category": "Organic Honey"
-    },
-    {
-      "id": 7,
-      "category": "Fresh Vegetables"
-    },
-    {
-      "id": 8,
-      "category": "Fresh Fruits"
+      "category": "vegetables",
+      "date": " Apr 16 2023 22:00",
+      "id": 2
     }
   ],
   "productFamily": [

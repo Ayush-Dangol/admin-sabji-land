@@ -64,12 +64,20 @@ export default function Table({
     }
   };
 
+  const pageCount = tableData ? Math.ceil(tableData.length / rowSize) : 0;
+  const pages = _.range(1, pageCount + 1);
+  const newCount = tableData ? Math.ceil(tableData.length / selected) : 0; //for calculating pages after changing rowSize
+
   const pagination = (pageNo) => {
     setCurrentPage(pageNo);
+
     const startIndex = (pageNo - 1) * selected;
+
+    // }
+    console.log(pageNo);
+    console.log(startIndex);
     setPaginatedPosts(_(tableData).slice(startIndex).take(selected).value());
   };
-
   // const change = (pageNo) => {
   //   setRowSize(50);
   //   setCurrentPage(pageNo);
@@ -188,11 +196,6 @@ export default function Table({
       </div>
     );
   };
-
-  const pageCount = tableData ? Math.ceil(tableData.length / rowSize) : 0;
-  const pages = _.range(1, pageCount + 1);
-  const newCount = tableData ? Math.ceil(tableData.length / selected) : 0; //for calculating pages after changing rowSize
-
   const fIndex = () => {
     const x = (currentPage - 1) * selected + 1;
     console.log(pages);
@@ -203,13 +206,14 @@ export default function Table({
     const x = (currentPage - 1) * selected + paginatedPost.length;
     return <span>{x}</span>;
   };
+  console.log(currentPage);
 
   const changes = (e) => {
     setSelected(e);
     const startIndex = (currentPage - 1) * rowSize;
+    console.log(rowSize);
     setPaginatedPosts(_(tableData).slice(startIndex).take(e).value());
   };
-  console.log(selected);
 
   return (
     <>
@@ -278,6 +282,9 @@ export default function Table({
               del={deleteEntry}
               preFilled={preFilled}
               update={update}
+              page={currentPage}
+              selected={selected}
+              totalData={data}
             />
           </table>
         </div>

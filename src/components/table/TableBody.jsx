@@ -7,6 +7,9 @@ export default function TableBody({
   update,
   del,
   preFilled,
+  page,
+  selected,
+  totalData,
 }) {
   const deleteEntry = (id) => {
     fetch(`http://localhost:4000/tabledata/${id}`, {
@@ -19,7 +22,17 @@ export default function TableBody({
       });
     });
   };
+  console.log(tableData?.length);
+  function sNo() {
+    var num;
+    if (page === 1) {
+      num = (page - 1) * 50;
+    } else {
+      num = page * (selected - 50);
+    }
 
+    return num;
+  }
   function Btn(props) {
     const ref = useRef();
     useEffect(() => {
@@ -96,17 +109,15 @@ export default function TableBody({
                         <img src={data[accessor]} alt="" />
                       </td>
                     );
+                  }
+                  if (accessor === "id") {
+                    return <td>{totalData?.indexOf(data) + 1}</td>;
                   } else {
                     return (
                       <>
                         <td key={accessor}>{data[accessor]}</td>
                       </>
                     );
-                  }
-                  {
-                    /* if (accessor === "id") {
-                    return <td>{tableData?.indexOf(data) + 1}</td>;
-                  }  */
                   }
                 }
               })}

@@ -45,7 +45,7 @@ export default function Categories() {
     if (seeCategory) {
       cTable();
     }
-
+    console.log(data);
     console.log(urlData);
     fetchData();
   }, [urlData]);
@@ -109,7 +109,7 @@ export default function Categories() {
   const [pFamily, setPFamily] = useState(false);
   const [pType, setPType] = useState(false);
   const [seeCategory, setSeeCategory] = useState(true);
-
+  console.log(id);
   return (
     <>
       {add ? (
@@ -122,7 +122,7 @@ export default function Categories() {
             seeCategory ? "category" : pFamily ? "productFamily" : "productType"
           }
           placeholder="eg: Vegetables"
-          lastid={data.at(-1).id}
+          // lastid={data.at(-1).id}
           call="POST"
           close={closeAdd}
         />
@@ -194,7 +194,7 @@ export default function Categories() {
         </ul>
         <div>
           <Table
-            url={url}
+            // url={url}
             columns={columns}
             data={data}
             searchName={

@@ -23,7 +23,7 @@ export default function AddCategory({
     setFamily(oldFamily);
     setType(oldType);
   }, [id]);
-
+  console.log(url);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -67,7 +67,7 @@ export default function AddCategory({
     const value = Object.fromEntries(data.entries());
     const lId = { id: lastid + 1 };
     if (call === "POST") {
-      const jsonData = Object.assign(value, obj, lId);
+      const jsonData = Object.assign(value, obj);
 
       let jsonS = JSON.stringify(jsonData);
       fetch(`${url}`, {
