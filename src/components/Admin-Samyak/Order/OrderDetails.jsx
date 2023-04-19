@@ -4,6 +4,7 @@ import Top from "./Top";
 import Table from "./Table";
 import AddOrder from "./AddOrder";
 import ViewOrder from "./OrderView";
+import OrderView from "./OrderView";
 
 function Order() {
   const [pop, setPop] = useState(false);
@@ -27,6 +28,8 @@ function Order() {
       </div>
       <AddOrder pop={pop} showAdd={showAdd} />
       <ViewOrder pop={vPop} toggleV={showView} />
+      <hr />
+      <OrderView />
     </div>
   );
 }

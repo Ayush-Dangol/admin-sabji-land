@@ -20,6 +20,8 @@ export default function Table({
   update,
   fileName,
   classN,
+  searchClass,
+  ...props
 }) {
   const [datas, setdatas] = useState(data);
   const [tableData, setTableData] = useState([]);
@@ -169,7 +171,7 @@ export default function Table({
 
     return (
       <div className="top-container">
-        <div className="search-container">
+        <div className={`search-container ${searchClass}`}>
           <form
             onSubmit={(e) => {
               submitForm(e);
@@ -189,7 +191,7 @@ export default function Table({
           </button>
         </div>
 
-        <div>
+        <div className={props.searchBtnClass}>
           <Btns add={add} ex={data} fileName={fileName} />
         </div>
         {/* <button onClick={change(currentPage - 1)}>a</button> */}

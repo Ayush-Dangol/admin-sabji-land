@@ -585,11 +585,20 @@ input[type="number" i] {
   display: flex;
 }
 
+.searchClass {
+  display: none;
+}
 .clear-search {
   border: 1px solid #d9d9d9;
   border-radius: 6px;
   background-color: transparent;
   margin-left: 50px;
+}
+
+.searchBtn {
+  width: 100%;
+  display: flex;
+  justify-content: end;
 }
 
 #name,
