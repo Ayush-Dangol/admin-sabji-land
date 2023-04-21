@@ -1,10 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Entry from "./Entry";
 import dataO from "./orderData";
 
 function Table(props) {
-  const [data, setData] = useState(dataO);
+  const [data, setData] = useState([]);
   const [order, setOrder] = useState("ASC");
+  const url = `http://localhost:4007/dataO`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+        console.log(data);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   function deleteOrder(index) {
     return data.filter((dataTerm) => {
@@ -82,6 +98,7 @@ function Table(props) {
     setData(sorted);
   };
 
+  console.log(data);
   return (
     <div className="admin-tableContainer">
       <table>
@@ -209,7 +226,7 @@ function Table(props) {
                 ? createEntry
                 : createEntry.username.toLowerCase().includes(props.search);
             })
-            .map(createEntry)}
+            ?.map(createEntry)}
         </tbody>
       </table>
     </div>

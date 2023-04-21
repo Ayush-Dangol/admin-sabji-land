@@ -1,7 +1,7 @@
 {
   "tabledata": [
     {
-      "name": "Fresh banana",
+      "name": "orange",
       "nepName": "",
       "rate": "98",
       "unit": "KG",
@@ -12,7 +12,7 @@
       "family": "e",
       "type": "t",
       "pDesc": "",
-      "date": " Apr 19 2023 13:07",
+      "date": " Apr 19 2023 15:26",
       "image": [
         "blob:http://localhost:3000/4013cf67-0629-4755-93a8-4467cf12a06f"
       ],

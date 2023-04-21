@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Entry from "./Entry";
-import data from "./riderData";
+// import data from "./riderData";
 
 function createEntry(empTerm) {
   return (
@@ -18,6 +18,24 @@ function createEntry(empTerm) {
 }
 
 function Table() {
+  const [data, setdata] = useState([]);
+  const url = `http://localhost:4007/data`;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        setdata(json);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(data);
   return (
     <div className="admin-tableContainer">
       <table>
@@ -31,7 +49,7 @@ function Table() {
           <th>Email</th>
           <th></th>
         </tr>
-        {data.map(createEntry)}
+        {data?.map(createEntry)}
       </table>
     </div>
   );

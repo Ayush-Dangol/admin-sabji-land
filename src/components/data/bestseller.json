@@ -1,0 +1,40 @@
+{
+  "bestseller": [
+    {
+      "name": "orange",
+      "nepName": "",
+      "rate": "98",
+      "unit": "KG",
+      "discount": "5%",
+      "stock": "200",
+      "category": "a",
+      "package": "c",
+      "family": "e",
+      "type": "t",
+      "pDesc": "",
+      "date": " Apr 19 2023 15:26",
+      "image": [
+        "blob:http://localhost:3000/4013cf67-0629-4755-93a8-4467cf12a06f"
+      ],
+      "id": 1
+    },
+    {
+      "name": "mango",
+      "nepName": "",
+      "rate": "100",
+      "unit": "KG",
+      "discount": "5%",
+      "stock": "200",
+      "category": "a",
+      "package": "c",
+      "family": "e",
+      "type": "t",
+      "pDesc": "",
+      "date": " Apr 11 2023 20:39",
+      "image": [
+        "blob:http://localhost:3000/2d5d0684-bb03-498e-881d-192e2ae5ad67"
+      ],
+      "id": 2
+    }
+  ]
+}

@@ -1,34 +1,43 @@
-import { useState } from "react";
+import ReactSearchBox from "react-search-box";
+import { useState, useEffect } from "react";
+import Table from "../table/Table";
 
-export default function Search() {
-  const [searchValue, setSearchValue] = useState("");
+export default function Search({ ...props }) {
+  const [query, setQuery] = useState("");
 
-  const submitForm = (e) => {
-    // e.preventDefault();
-    setSearchValue(searchValue);
-    // const newData = paginatedPost.filter(
-    //   (x) =>
-    //     x[searchName].toLowerCase() ===
-    //     (searchValue.toLowerCase() === ""
-    //       ? x[searchName].toLowerCase()
-    //       : searchValue.toLowerCase())
-    // );
+  const handleChange = (e) => {
+    setQuery(e);
+    props.onSearch(query);
   };
+
+  useEffect(() => {
+    props.onSearch(query);
+  }, [query]);
+
   return (
-    <>
-      <form
-        onSubmit={(e) => {
-          submitForm(e);
-        }}
-      >
-        <input
-          type="search"
-          name="tableSearch"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className="tablesearch"
-        />
-      </form>
-    </>
+    <div>
+      <input
+        type="search"
+        name=""
+        id=""
+        className={`tablesearch ${props.searchClass}`}
+        onChange={(e) => handleChange(e.target.value)}
+      />
+      {/* <div>
+        {query != "" ? (
+          <>
+            <ul>
+              {finalData
+                ?.filter((data) => data.value.toLowerCase().includes(query))
+                .map((data) => {
+                  return <li key={data.id}>{data.value}</li>;
+                })}
+            </ul>
+          </>
+        ) : (
+          ""
+        )}
+      </div> */}
+    </div>
   );
 }

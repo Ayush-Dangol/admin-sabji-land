@@ -11,7 +11,7 @@ export default function TableHead({ columns, handleSorting }) {
     setOrder(sortOrder);
     handleSorting(accessor, sortOrder);
   };
-
+  console.log(columns);
   return (
     <>
       <thead>

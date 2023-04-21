@@ -2,6 +2,7 @@ import Table from "../../table/Table";
 import AddProducts from "../addProducts";
 import { useEffect, useState, useLayoutEffect } from "react";
 import AddBestSellers from "../update/addBestSellers";
+import { IoAddCircleOutline } from "react-icons/io5";
 
 export default function BestSellers() {
   // const [datas, setData] = useState([]);
@@ -15,7 +16,7 @@ export default function BestSellers() {
     { label: "Unit", accessor: "unit", sortable: false },
     { label: "Created Date", accessor: "date", sortable: true },
   ];
-  const [urlData, setUrlData] = useState("tabledata");
+  const [urlData, setUrlData] = useState("bestseller");
   const [data, setdata] = useState("");
   const [img, setImg] = useState("");
   const [id, setId] = useState(1);
@@ -33,7 +34,7 @@ export default function BestSellers() {
   const [organic, setOrganic] = useState("");
   const [edible, setEdible] = useState("");
 
-  const url = `http://localhost:4000/${urlData}`;
+  const url = `http://localhost:4004/${urlData}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -89,18 +90,24 @@ export default function BestSellers() {
       <h2 className="admin-title">Best Sellers</h2>
       {/* <Table /> */}
 
-      <AddBestSellers />
+      <div className="bestseller-btn-container">
+        <button onClick={toggleAdd} className={`btns-add-bestseller btns-add`}>
+          Add Products{" "}
+          <span className="btns-add-icon">
+            <IoAddCircleOutline />
+          </span>
+        </button>
+      </div>
+
       {add ? (
         <>
-          <div>
-            <AddProducts
-              close={() => {
-                setAdd(false);
-              }}
-              call="POST"
-              lastid={data.at(-1).id}
-            />
-          </div>
+          <AddBestSellers
+            totalData={data}
+            col={columns}
+            close={() => {
+              setAdd(false);
+            }}
+          />
         </>
       ) : (
         ""
@@ -129,21 +136,7 @@ export default function BestSellers() {
         ""
       )}
 
-      <Table
-        url={url}
-        columns={columns}
-        searchClass="searchClass"
-        data={data}
-        searchBtnClass="searchBtn"
-        searchName="name"
-        idNum="id"
-        searchPlaceholder="Search by Product Name"
-        preFilled={preFilled}
-        add={toggleAdd}
-        fileName="products"
-        update={toggleUpdate}
-        classN={add || update ? "table-section" : ""}
-      />
+      <Table columns={columns} data={data} topclass="hide-div" />
     </div>
   );
 }

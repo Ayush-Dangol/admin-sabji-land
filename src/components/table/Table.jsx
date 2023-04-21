@@ -170,7 +170,7 @@ export default function Table({
     };
 
     return (
-      <div className="top-container">
+      <div className={`top-container ${props.topclass}`}>
         <div className={`search-container ${searchClass}`}>
           <form
             onSubmit={(e) => {

@@ -22,17 +22,9 @@ export default function TableBody({
       });
     });
   };
-  console.log(tableData?.length);
-  function sNo() {
-    var num;
-    if (page === 1) {
-      num = (page - 1) * 50;
-    } else {
-      num = page * (selected - 50);
-    }
 
-    return num;
-  }
+  console.log(totalData);
+  console.log(columns);
   function Btn(props) {
     const ref = useRef();
     useEffect(() => {
@@ -97,9 +89,11 @@ export default function TableBody({
     <>
       <tbody>
         {tableData?.map((data) => {
+          console.log(data);
           return (
             <tr key={data.id} className="table-rows">
-              {columns.map(({ accessor }) => {
+              {columns?.map(({ accessor }) => {
+                console.log(accessor);
                 if (data[accessor] === "") {
                   return <td>--</td>;
                 } else {
@@ -121,7 +115,7 @@ export default function TableBody({
                   }
                 }
               })}
-              <td>
+              <td key={data.id}>
                 <Btn id={data.id} />
               </td>
             </tr>
