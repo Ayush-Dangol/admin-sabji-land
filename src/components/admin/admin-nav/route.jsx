@@ -8,11 +8,13 @@ import Customers from "./customerdetails";
 import Order from "../../Admin-Samyak/Order/OrderDetails";
 import Rider from "../../Admin-Samyak/Rider/Rider";
 import Admin2 from "../../Admin-Samyak/Admin2/Admin";
+import AdminLoginPage from "../../admin-login/AdminLoginPage";
 
 export default function AdminRoute() {
   return (
     <div>
       <Routes>
+        <Route path="/" element={<AdminLoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/homepage" element={<Home />} />
         <Route path="/categories" element={<Categories />} />

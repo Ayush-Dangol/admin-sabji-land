@@ -1,4 +1,5 @@
 import Img from "../img";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   MdSpaceDashboard,
   MdOutlinePayments,
@@ -13,7 +14,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import Navitem from "./navitem";
 
-export default function AdminNav() {
+export default function AdminNav(props) {
+  const [userName, setUserName] = useState(useLocation());
+  const [loggedIn, setLoggedIn] = useState(true);
+  const navigate = useNavigate();
   const ref = useRef();
   const [toggle, setToggle] = useState(false);
   const handleToggle = () => setToggle(!toggle);
@@ -34,6 +38,16 @@ export default function AdminNav() {
     };
   }, [ref]);
 
+  useEffect(() => {
+    if (loggedIn == false) {
+      navigate("/");
+    }
+  }, [loggedIn, navigate]);
+
+  const logOut = () => {
+    setLoggedIn(false);
+  };
+
   return (
     <div>
       <button className="ham-admin" onClick={() => setToggle(!toggle)}>
@@ -52,8 +66,9 @@ export default function AdminNav() {
         <div className="profile-details">
           <Img src="./images/profile.png" class="profile" />
           <div>
-            <h2>Fiyonna</h2>
+            <h2>{userName.state.username}</h2>
             <p>Admin Manager</p>
+            <button onClick={logOut}>Log Out</button>
           </div>
         </div>
 

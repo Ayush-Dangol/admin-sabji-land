@@ -8,6 +8,10 @@ button {
   cursor: pointer;
 }
 
+.app-container {
+  padding: 2%;
+}
+
 .hide-div {
   display: none !important;
 }
@@ -845,7 +849,7 @@ input[type="search" i]:focus {
   border-radius: 8px;
   width: 94%;
   padding: 1% 2%;
-  min-width: 550px;
+  /* min-width: 550px; */
   overflow-y: scroll;
   margin-bottom: 2%;
 }
@@ -854,7 +858,7 @@ input[type="search" i]:focus {
   border-radius: 8px;
   width: 94%;
   padding: 1% 2%;
-  min-width: 550px;
+  /* min-width: 550px; */
   max-height: 300px;
   overflow-y: scroll;
 }
@@ -888,7 +892,7 @@ input[type="search" i]:focus {
     overflow-x: hidden;
     /* border: solid red; */
     transform: translateX(-100px);
-    top: 112px;
+    top: 100px;
     position: absolute;
     background-color: white;
     z-index: 10;

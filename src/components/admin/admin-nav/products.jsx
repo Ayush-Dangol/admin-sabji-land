@@ -115,6 +115,7 @@ export default function Products() {
               }}
               call="POST"
               lastid={data.at(-1).id}
+              url={url}
             />
           </div>
         </>
@@ -139,6 +140,7 @@ export default function Products() {
             id={id}
             call="PUT"
             close={close}
+            url={url}
           />
         </div>
       ) : (

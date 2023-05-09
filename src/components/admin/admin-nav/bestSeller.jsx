@@ -33,25 +33,26 @@ export default function BestSellers() {
   const [type, setType] = useState("");
   const [organic, setOrganic] = useState("");
   const [edible, setEdible] = useState("");
-
+  const [d, setd] = useState();
   const url = `http://localhost:4004/${urlData}`;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(url);
-        const json = await response.json();
-        setdata(json);
-      } catch (error) {
-        console.log("error", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url);
+      const json = await response.json();
+      setdata(json);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
+  useEffect(() => {
     fetchData();
   }, []);
 
   useEffect(() => {
     preFilled(id);
+    console.log(id);
   }, [id]);
 
   const preFilled = (sno) => {
@@ -130,13 +131,123 @@ export default function BestSellers() {
             id={id}
             call="PUT"
             close={close}
+            url={url}
           />
         </div>
       ) : (
         ""
       )}
 
-      <Table columns={columns} data={data} topclass="hide-div" />
+      <Table
+        columns={columns}
+        data={data}
+        topclass="hide-div"
+        preFilled={preFilled}
+        url={url}
+        update={toggleUpdate}
+      />
     </div>
   );
 }
+
+// import React, { useState, useEffect } from "react";
+
+// function TableHead({ headers }) {
+//   return (
+//     <thead>
+//       <tr>
+//         {headers?.map((header) => (
+//           <th key={header}>{header}</th>
+//         ))}
+//       </tr>
+//     </thead>
+//   );
+// }
+
+// function TableBody({ data, start, end }) {
+//   const slicedData = data.slice(start, end);
+//   console.log(end);
+//   return (
+//     <tbody>
+//       {slicedData.map((item) => (
+//         <tr key={item.id}>
+//           <td>{item.id}</td>
+//           <td>{item.name}</td>
+//           <td>{item.age}</td>
+//           <td>{item.email}</td>
+//         </tr>
+//       ))}
+//     </tbody>
+//   );
+// }
+
+// export default function BestSellers({
+//   headers,
+//   rowsPerPage,
+//   defaultRowsPerPage,
+// }) {
+//   const rows = 50;
+//   const [data, setData] = useState([]);
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [numRows, setNumRows] = useState(rows);
+//   console.log(parseInt(numRows));
+//   const handleNumRowsChange = (event) => {
+//     setNumRows(event.target.value);
+//     setCurrentPage(1);
+//     console.log(numRows);
+//   };
+
+//   const handlePrevPageClick = () => {
+//     setCurrentPage((prevPage) => prevPage - 1);
+//   };
+
+//   const handleNextPageClick = () => {
+//     setCurrentPage((prevPage) => prevPage + 1);
+//   };
+
+//   const totalPages = Math.ceil(data.length / numRows);
+//   const startIndex = (currentPage - 1) * numRows;
+//   const endIndex = startIndex + parseInt(numRows);
+//   console.log(endIndex);
+
+//   useEffect(() => {
+//     fetch("http://localhost:4004/bestseller")
+//       .then((response) => response.json())
+//       .then((jsonData) => setData(jsonData));
+//   }, []);
+
+//   useEffect(() => {
+//     if (numRows > data.length) {
+//       setNumRows(data.length);
+//     }
+//   }, [numRows, data]);
+
+//   return (
+//     <div>
+//       <label htmlFor="rowsPerPage">Rows per page:</label>
+//       <select id="rowsPerPage" onChange={handleNumRowsChange} value={numRows}>
+//         {rowsPerPage?.map((num) => (
+//           <option key={num} value={num}>
+//             {num}
+//           </option>
+//         ))}
+//       </select>
+//       <table>
+//         <TableHead headers={headers} />
+//         <TableBody data={data} start={startIndex} end={endIndex} />
+//       </table>
+//       <div>
+//         <button disabled={currentPage === 1} onClick={handlePrevPageClick}>
+//           Previous
+//         </button>
+//         <span>{currentPage}</span>
+//         <button
+//           disabled={currentPage === totalPages}
+//           onClick={handleNextPageClick}
+//         >
+//           Next
+//         </button>
+//       </div>
+//     </div>
+//   );
+// }

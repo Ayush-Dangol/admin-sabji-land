@@ -23,8 +23,6 @@ export default function TableBody({
     });
   };
 
-  console.log(totalData);
-  console.log(columns);
   function Btn(props) {
     const ref = useRef();
     useEffect(() => {
@@ -89,11 +87,9 @@ export default function TableBody({
     <>
       <tbody>
         {tableData?.map((data) => {
-          console.log(data);
           return (
             <tr key={data.id} className="table-rows">
               {columns?.map(({ accessor }) => {
-                console.log(accessor);
                 if (data[accessor] === "") {
                   return <td>--</td>;
                 } else {

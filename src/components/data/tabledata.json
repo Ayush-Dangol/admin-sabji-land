@@ -1,9 +1,9 @@
 {
   "tabledata": [
     {
-      "name": "orange",
+      "name": "Apple",
       "nepName": "",
-      "rate": "98",
+      "rate": "97",
       "unit": "KG",
       "discount": "5%",
       "stock": "200",
@@ -12,28 +12,25 @@
       "family": "e",
       "type": "t",
       "pDesc": "",
-      "date": " Apr 19 2023 15:26",
+      "date": " May 01 2023 12:44",
       "image": [
         "blob:http://localhost:3000/4013cf67-0629-4755-93a8-4467cf12a06f"
       ],
       "id": 1
     },
     {
-      "name": "mango",
+      "name": "",
       "nepName": "",
-      "rate": "100",
+      "rate": "",
       "unit": "KG",
-      "discount": "5%",
-      "stock": "200",
+      "discount": "",
+      "stock": "",
       "category": "a",
       "package": "c",
       "family": "e",
       "type": "t",
       "pDesc": "",
-      "date": " Apr 11 2023 20:39",
-      "image": [
-        "blob:http://localhost:3000/2d5d0684-bb03-498e-881d-192e2ae5ad67"
-      ],
+      "date": " Apr 23 2023 12:23",
       "id": 2
     },
     {
@@ -2557,69 +2554,6 @@
       "pDesc": "",
       "date": " Apr 11 2023 13:16",
       "id": 220
-    },
-    {
-      "name": "",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Apr 11 2023 13:16",
-      "image": "blob:http://localhost:3000/9df9f284-b6f0-4c96-9890-d39f99096a2d",
-      "id": 221
-    },
-    {
-      "name": "",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Apr 11 2023 13:16",
-      "id": 222
-    },
-    {
-      "name": "",
-      "nepName": "",
-      "rate": "",
-      "unit": "KG",
-      "discount": "",
-      "stock": "",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "pDesc": "",
-      "date": " Apr 11 2023 13:20",
-      "id": 223
-    },
-    {
-      "name": "Fresh banana",
-      "nepName": "",
-      "rate": "1",
-      "unit": "KG",
-      "discount": "2",
-      "stock": "3",
-      "category": "a",
-      "package": "c",
-      "family": "e",
-      "type": "t",
-      "organic": "Y",
-      "edible": "on",
-      "pDesc": "",
-      "date": " Apr 11 2023 13:51",
-      "id": 225
     }
   ]
 }

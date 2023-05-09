@@ -79,9 +79,9 @@ function AddBestSellers(props) {
     { label: "#", accessor: "id", sortable: true },
     { label: "", accessor: "image", sortable: false },
     { label: "Product", accessor: "name", sortable: true },
-    { label: "Rate", accessor: "rate", sortable: true },
-    { label: "Stock", accessor: "stock", sortable: true },
-    { label: "Unit", accessor: "unit", sortable: false },
+    // { label: "Rate", accessor: "rate", sortable: true },
+    // { label: "Stock", accessor: "stock", sortable: true },
+    // { label: "Unit", accessor: "unit", sortable: false },
   ];
 
   const [finalData, setFinalData] = useState();
@@ -115,52 +115,49 @@ function AddBestSellers(props) {
   function BestsellerTable({ btnClick, ...props }) {
     return (
       <>
-        <table className="react-table">
-          <TableHead columns={columns} />
-          {props.tabledata
-            ?.filter((entry) => entry.name?.toLowerCase().includes(searchQuery))
-            .map((entry) => {
-              return (
-                <tr key={entry.id}>
-                  {columns?.map(({ accessor }) => {
-                    if (entry[accessor] === "") {
-                      return <td>--</td>;
-                    } else {
-                      if (accessor === "image") {
-                        return (
-                          <td>
-                            <img src={entry[accessor]} alt="" />
-                          </td>
-                        );
-                      }
-                      if (accessor === "id") {
-                        return <td>{props.tabledata?.indexOf(entry) + 1}</td>;
-                      } else {
-                        return (
-                          <>
-                            <td key={accessor}>{entry[accessor]}</td>
-                          </>
-                        );
-                      }
+        {props.tabledata
+          ?.filter((entry) => entry.name?.toLowerCase().includes(searchQuery))
+          .map((entry) => {
+            return (
+              <tr key={entry.id}>
+                {columns?.map(({ accessor }) => {
+                  if (entry[accessor] === "") {
+                    return <td>--</td>;
+                  } else {
+                    if (accessor === "image") {
+                      return (
+                        <td>
+                          <img src={entry[accessor]} alt="" />
+                        </td>
+                      );
                     }
-                  })}
-                  <td>
-                    <button
-                      onClick={() => btnClick(entry.id)}
-                      className={`${props.btnClass} ${
-                        newData.some((dataItem) => dataItem.id === entry.id)
-                          ? "bestSellerColor"
-                          : ""
-                      }`}
-                    >
-                      {props.btn}
-                    </button>
-                    {/* <Btn id={entry.id} data={prevData} c={a} /> */}
-                  </td>
-                </tr>
-              );
-            })}
-        </table>
+                    if (accessor === "id") {
+                      return <td>{props.tabledata?.indexOf(entry) + 1}</td>;
+                    } else {
+                      return (
+                        <>
+                          <td key={accessor}>{entry[accessor]}</td>
+                        </>
+                      );
+                    }
+                  }
+                })}
+                <td>
+                  <button
+                    onClick={() => btnClick(entry.id)}
+                    className={`${props.btnClass} ${
+                      newData.some((dataItem) => dataItem.id === entry.id)
+                        ? "bestSellerColor"
+                        : ""
+                    }`}
+                  >
+                    {props.btn}
+                  </button>
+                  {/* <Btn id={entry.id} data={prevData} c={a} /> */}
+                </td>
+              </tr>
+            );
+          })}
       </>
     );
   }
@@ -182,26 +179,34 @@ function AddBestSellers(props) {
       </div>
       <div className={searchQuery != "" ? "bestseller-container" : ""}>
         {searchQuery != "" ? (
-          <BestsellerTable
-            tabledata={finalData}
-            btnClass="BestSellerBtn"
-            btnClick={handleToggle}
-          />
+          <table className="react-table">
+            <BestsellerTable
+              tabledata={finalData}
+              btnClass="BestSellerBtn"
+              btnClick={handleToggle}
+            />
+          </table>
         ) : (
           ""
         )}
       </div>
       <div>
         {newData.length != 0 ? (
-          <div className="bestseller-container2">
-            {" "}
-            <BestsellerTable
-              tabledata={newData}
-              btn={<RiDeleteBin2Line />}
-              btnClass="bestseller-remove"
-              btnClick={removeToggle}
-            />{" "}
-          </div>
+          <>
+            <hr />
+            <div className="bestseller-container2">
+              {" "}
+              <table className="react-table">
+                <TableHead columns={columns} />
+                <BestsellerTable
+                  tabledata={newData}
+                  btn={<RiDeleteBin2Line />}
+                  btnClass="bestseller-remove"
+                  btnClick={removeToggle}
+                />{" "}
+              </table>
+            </div>
+          </>
         ) : (
           ""
         )}

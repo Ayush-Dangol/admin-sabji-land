@@ -22,6 +22,7 @@ export default function AddProducts({
   close,
   call,
   lastid,
+  url,
 }) {
   const [first, setfirst] = useState();
   const [pname, setName] = useState();
@@ -94,7 +95,7 @@ export default function AddProducts({
 
       let jsonS = JSON.stringify(jsonData);
 
-      fetch(`http://localhost:4000/tabledata`, {
+      fetch(`${url}`, {
         method: "POST", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +108,7 @@ export default function AddProducts({
       const jsonData = Object.assign(value, obj, imgData);
 
       let jsonS = JSON.stringify(jsonData);
-      fetch(`http://localhost:4000/tabledata/${id}`, {
+      fetch(`${url}/${id}`, {
         method: "PUT", // or 'PUT'
         headers: {
           "Content-Type": "application/json",

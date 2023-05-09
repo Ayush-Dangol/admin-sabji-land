@@ -118,6 +118,7 @@ export default function Table({
       //   console.log(count)
       // )
       .then((result) => {
+        console.log(result.json);
         result.json().then((resp) => {
           setrePage(currentPage - 1);
           // setPaginatedPosts(_(tableData).slice(0).take(2).value());
