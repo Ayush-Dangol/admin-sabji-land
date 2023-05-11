@@ -1,5 +1,5 @@
+import axios, { Axios } from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   // const [authenticated, setauthenticated] = useState(null);
@@ -11,12 +11,16 @@ export default function Dashboard() {
   //   console.log(loggedInUser);
   // }, []);
   // const navigate = useNavigate();
-
+  // axios.get("http://localhost:4000/api/v1/whoami").then((res) => {
+  //   console.log(res);
+  // });
   return (
     <>
       {/* {authenticated ? (
         <> */}
+
       <h1 className="admin-title">Dashboard</h1>
+
       {/* </>
       ) : (
         navigate("/")

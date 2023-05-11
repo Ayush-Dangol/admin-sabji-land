@@ -1,4 +1,5 @@
-import Img from "../img";
+// import Img from "./components/admin/img";
+import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   MdSpaceDashboard,
@@ -13,9 +14,11 @@ import { AiOutlineFileDone, AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useRef, useState } from "react";
 import Navitem from "./navitem";
+import Img from "../img";
 
 export default function AdminNav(props) {
-  const [userName, setUserName] = useState(useLocation());
+  console.log(props.username);
+  const userName = props.username;
   const [loggedIn, setLoggedIn] = useState(true);
   const navigate = useNavigate();
   const ref = useRef();
@@ -38,14 +41,11 @@ export default function AdminNav(props) {
     };
   }, [ref]);
 
-  useEffect(() => {
-    if (loggedIn == false) {
-      navigate("/");
-    }
-  }, [loggedIn, navigate]);
-
   const logOut = () => {
-    setLoggedIn(false);
+    axios.get("http://localhost:4000/api/v1/logout").then((res) => {
+      localStorage.setItem("token", res.data.token);
+      navigate("/");
+    });
   };
 
   return (
@@ -64,9 +64,10 @@ export default function AdminNav(props) {
           </span>
         </div>
         <div className="profile-details">
+          {/* <Img src="./images/profile.png" class="profile" /> */}
           <Img src="./images/profile.png" class="profile" />
           <div>
-            <h2>{userName.state.username}</h2>
+            <h2>{userName}</h2>
             <p>Admin Manager</p>
             <button onClick={logOut}>Log Out</button>
           </div>
@@ -78,7 +79,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/dashboard"
+              to="/admin"
             >
               <MdSpaceDashboard /> Dashboard
             </Navitem>
@@ -86,7 +87,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/homepage"
+              to="/admin/homepage"
             >
               <BiHomeAlt /> Home Page
             </Navitem>
@@ -94,7 +95,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/categories"
+              to="/admin/categories"
             >
               <TfiMenuAlt /> Categories
             </Navitem>
@@ -102,7 +103,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/products"
+              to="/admin/products"
             >
               <FaCubes /> Products
             </Navitem>
@@ -110,7 +111,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/customerdetails"
+              to="/admin/customerdetails"
             >
               <FaUserAlt /> Customer Details
             </Navitem>
@@ -118,7 +119,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/orderdetails"
+              to="/admin/orderdetails"
             >
               <AiOutlineFileDone /> Order Details
             </Navitem>
@@ -126,7 +127,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/payment"
+              to="/admin/payment"
             >
               <MdOutlinePayments /> Payment Details
             </Navitem> */}
@@ -134,7 +135,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/reviews"
+              to="/admin/reviews"
             >
               <MdOutlineRateReview /> Reviews
             </Navitem>
@@ -142,7 +143,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/admin2"
+              to="/admin/admin2"
             >
               <FaUserTie /> Admin Details
             </Navitem>
@@ -150,7 +151,7 @@ export default function AdminNav(props) {
               click={() => {
                 handleToggle();
               }}
-              to="/riderdetails"
+              to="/admin/riderdetails"
             >
               <MdOutlineDirectionsBike /> Rider Details
             </Navitem>

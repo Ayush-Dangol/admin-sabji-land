@@ -114,7 +114,7 @@ export default function Products() {
                 setAdd(false);
               }}
               call="POST"
-              lastid={data.at(-1).id}
+              // lastid={data.at(-1).id}
               url={url}
             />
           </div>
