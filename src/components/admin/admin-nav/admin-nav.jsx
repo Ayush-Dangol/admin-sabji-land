@@ -42,10 +42,14 @@ export default function AdminNav(props) {
   }, [ref]);
 
   const logOut = () => {
-    axios.get("http://localhost:4000/api/v1/logout").then((res) => {
-      localStorage.setItem("token", res.data.token);
-      navigate("/");
-    });
+    axios
+      .get("http://localhost:4000/api/v1/logout", {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // localStorage.setItem("token", res.data.token);
+        navigate("/");
+      });
   };
 
   return (

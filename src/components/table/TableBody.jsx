@@ -70,6 +70,7 @@ export default function TableBody({
                   preFilled(props.id);
                   update();
                   setShow(false);
+                  console.log("here", props.id);
                 }}
               >
                 Update
@@ -88,7 +89,7 @@ export default function TableBody({
       <tbody>
         {tableData?.map((data) => {
           return (
-            <tr key={data.id} className="table-rows">
+            <tr key={data._id} className="table-rows">
               {columns?.map(({ accessor }) => {
                 if (data[accessor] === "") {
                   return <td>--</td>;
@@ -111,8 +112,8 @@ export default function TableBody({
                   }
                 }
               })}
-              <td key={data.id}>
-                <Btn id={data.id} />
+              <td key={data._id}>
+                <Btn id={data._id} />
               </td>
             </tr>
           );

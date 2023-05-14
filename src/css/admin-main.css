@@ -326,15 +326,22 @@ button {
   display: flex;
   width: fit-content;
   justify-content: center;
-  position: relative;
+  /* position: relative; */
   z-index: 15;
-  /* 
-  position: fixed;
-  top: 60%;
+  /* position: absolute !important; */
+
+  position: absolute;
+  top: 100px;
   left: 50%;
-  transform: translate(-50%, -50%); */
+  transform: translate(-50%, 0%);
 
   /* padding: 20px; */
+}
+
+.products-radio-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3%;
 }
 
 .close-add {
@@ -350,17 +357,19 @@ button {
 }
 
 .add-product {
-  width: 52vw;
+  /* width: 52vw; */
+  width: 900px;
   display: grid;
   grid-template-columns: 60% 40%;
   position: relative;
   margin: auto;
   background-color: white;
+  /* padding: 2% 10%; */
   padding: 50px 55px 25px;
   border: 1px solid rgba(193, 190, 190, 0.6);
   border-radius: 8px;
   z-index: 10;
-  column-gap: 30px;
+  column-gap: 40px;
   margin-bottom: 50px;
 }
 
@@ -375,6 +384,30 @@ button {
 
 .add-products-right {
   width: 310px;
+}
+.product-submit-container {
+  margin-top: 5%;
+}
+
+.product-submit,
+.product-cancel {
+  width: 80px;
+  height: 38px;
+  background: #be4217;
+  border-radius: 7px;
+  font-weight: 700;
+  font-size: 14px;
+  color: #ffffff;
+  line-height: 19px;
+  border: none;
+}
+
+.product-cancel {
+  width: 84px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  color: rgba(0, 0, 0, 0.4);
+  margin-left: 30px;
 }
 
 .product-left-item1 {
@@ -427,7 +460,7 @@ input[type="number" i] {
 
 .input-item-text {
   height: 167px;
-  width: 100%;
+  width: 98%;
 }
 
 .btns-container {
@@ -914,7 +947,8 @@ input[type="search" i]:focus {
   }
 
   .add-product {
-    width: 90%;
+    /* width: 90% !important; */
+    width: 75vw;
   }
 }
 
@@ -923,10 +957,7 @@ input[type="search" i]:focus {
     width: 95%;
   }
 
-  .add-product {
-    width: 90%;
-    grid-template-columns: 100%;
-  }
+  /*  */
 
   .add-products-input {
     width: 95%;
@@ -934,5 +965,16 @@ input[type="search" i]:focus {
 
   .input-select {
     width: 100% !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .add-product {
+    /* width: 90%; */
+    grid-template-columns: 100%;
+  }
+
+  .add-products-right {
+    width: 99%;
   }
 }

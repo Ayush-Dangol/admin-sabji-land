@@ -71,10 +71,8 @@ export default function AdminRoute(props) {
   }, [expirationTime]);
 
   axios
-    .get("http://127.0.0.1:4000/api/v1/whoami", {
-      headers: {
-        token: `${localStorage.token}`,
-      },
+    .get("http://localhost:4000/api/v1/whoami", {
+      withCredentials: true,
     })
     .then((res) => {
       console.log("success", res);

@@ -10,14 +10,15 @@ export default function AddCategory({
   oldType,
   value,
   close,
-  url,
   ...props
 }) {
   const [category, setCategory] = useState("");
   const [family, setFamily] = useState("");
   const [type, setType] = useState("");
   const [data, setData] = useState([]);
-  const productUrl = `http://localhost:4001/productFamily`;
+  const productUrl = `http://localhost:4000/api/v1/postCategory`;
+
+  const url = `http://localhost:4000/api/v1/postCategory`;
   useEffect(() => {
     setCategory(oldCategory);
     setFamily(oldFamily);
@@ -70,13 +71,19 @@ export default function AddCategory({
       const jsonData = Object.assign(value, obj);
 
       let jsonS = JSON.stringify(jsonData);
-      fetch(`${url}`, {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
+      fetch(
+        url,
+        {
+          method: "POST", // or 'PUT'
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: jsonS,
         },
-        body: jsonS,
-      })
+        {
+          Credential: "include",
+        }
+      )
         .then(() => {
           close();
         })

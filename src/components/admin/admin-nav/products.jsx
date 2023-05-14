@@ -8,17 +8,17 @@ export default function Products() {
   const columns = [
     { label: "#", accessor: "id", sortable: true },
     { label: "", accessor: "image", sortable: false },
-    { label: "Product", accessor: "name", sortable: true },
+    { label: "Product", accessor: "productName", sortable: true },
     { label: "Rate", accessor: "rate", sortable: true },
     { label: "Discount", accessor: "discount", sortable: true },
     { label: "Stock", accessor: "stock", sortable: true },
-    { label: "Unit", accessor: "unit", sortable: false },
+    { label: "Unit", accessor: "unitType", sortable: false },
     { label: "Created Date", accessor: "date", sortable: true },
   ];
-  const [urlData, setUrlData] = useState("tabledata");
+  const [urlData, setUrlData] = useState("getAllProducts");
   const [data, setdata] = useState("");
   const [img, setImg] = useState("");
-  const [id, setId] = useState(1);
+  const [id, setId] = useState();
   const [add, setAdd] = useState(false);
   const [update, setUpdate] = useState(false);
   const [name, setName] = useState("");
@@ -33,14 +33,15 @@ export default function Products() {
   const [organic, setOrganic] = useState("");
   const [edible, setEdible] = useState("");
 
-  const url = `http://localhost:4000/${urlData}`;
+  const url = `http://localhost:4000/api/v1/${urlData}`;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        setdata(json);
+        console.log("data: ", json);
+        setdata(json.data);
       } catch (error) {
         console.log("error", error);
       }
@@ -52,14 +53,14 @@ export default function Products() {
   useEffect(() => {
     preFilled(id);
   }, [id]);
-
+  console.log(id);
   const preFilled = (sno) => {
     setId(sno);
-    console.log(img);
-    let item = data[sno - 1];
+    console.log(data);
+    let item = data.find((entry) => entry._id === sno);
     console.log(item);
     setImg(item?.image);
-    setName(item?.name);
+    setName(item?.productName);
     setUnit(item?.unit);
     setDiscount(item?.discount);
     setStock(item?.stock);
@@ -108,16 +109,14 @@ export default function Products() {
 
       {add ? (
         <>
-          <div>
-            <AddProducts
-              close={() => {
-                setAdd(false);
-              }}
-              call="POST"
-              // lastid={data.at(-1).id}
-              url={url}
-            />
-          </div>
+          <AddProducts
+            close={() => {
+              setAdd(false);
+            }}
+            call="POST"
+            // lastid={data.at(-1).id}
+            url={url}
+          />
         </>
       ) : (
         ""

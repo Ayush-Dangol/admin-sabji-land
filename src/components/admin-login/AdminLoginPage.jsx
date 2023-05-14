@@ -27,30 +27,32 @@ const AdminLoginPage = () => {
   const navigate = useNavigate();
   const submitAdminLoginForm = () => {
     axios
-      .post("http://127.0.0.1:4000/api/v1/login", {
-        email: adminLoginDetails.adminUsername,
-        password: adminLoginDetails.adminPassword,
-      })
+      .post(
+        "http://localhost:4000/api/v1/login",
+        {
+          email: adminLoginDetails.adminUsername,
+          password: adminLoginDetails.adminPassword,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         console.log("success", res);
         setAdminLoginDetails({
           adminUsername: "",
           adminPassword: "",
         });
-        setLoggedIn(true);
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem(
-          "expire",
-          new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000)
-        );
-        console.log(localStorage.expire);
-        console.log(new Date(now.getTime() + 10000));
+        // setLoggedIn(true);
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem(
+        //   "expire",
+        //   new Date(now.getTime() + 4 * 24 * 60 * 60 * 1000)
+        // );
+        // console.log(localStorage.expire);
+        // console.log(new Date(now.getTime() + 10000));
         if (res.data.success === true) {
-          navigate("/admin", {
-            state: {
-              username: adminLoginDetails.adminUsername,
-            },
-          });
+          navigate("/admin");
         }
       })
       .catch((err) => {

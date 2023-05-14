@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import UploadImg from "../uploadImage";
 import Input from "./update/input";
+import axios from "axios";
 // var RNFS = require("react-native-fs");
-
 export default function AddProducts({
   name,
   image,
@@ -22,7 +22,6 @@ export default function AddProducts({
   close,
   call,
   lastid,
-  url,
 }) {
   const [first, setfirst] = useState();
   const [pname, setName] = useState();
@@ -39,24 +38,26 @@ export default function AddProducts({
   const [pedible, setEdible] = useState("");
 
   const ref = useRef();
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        close(!close);
-      }
-    }
-    // Bind the event listener
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [ref]);
+  // useEffect(() => {
+  //   /**
+  //    * Alert if clicked on outside of element
+  //    */
+  //   function handleClickOutside(event) {
+  //     if (ref.current && !ref.current.contains(event.target)) {
+  //       close(!close);
+  //     }
+  //   }
+  //   // Bind the event listener
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     // Unbind the event listener on clean up
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [ref]);
 
   useEffect(() => {
+    console.log(id);
+    console.log(name);
     setName(name);
     setImg(image);
     setName(name);
@@ -83,6 +84,7 @@ export default function AddProducts({
     const date = new Date();
     const dates = String(date);
     console.log(dates.slice(3, 21));
+    const url = `http://localhost:4000/api/v1/postProduct`;
 
     const obj = { date: dates.slice(3, 21) };
     const data = new FormData(event.target);
@@ -91,24 +93,34 @@ export default function AddProducts({
     const imgData = { image: pimg };
     const lId = { id: lastid + 1 };
     if (call === "POST") {
-      const jsonData = Object.assign(value, obj, imgData, lId);
-
+      const jsonData = Object.assign(value, obj, imgData);
       let jsonS = JSON.stringify(jsonData);
 
-      fetch(`${url}`, {
-        method: "POST", // or 'PUT'
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: jsonS,
-      }).catch((error) => {
-        console.error("Error:", error);
-      });
+      // fetch(url, {
+      //   method: "POST", // or 'PUT'
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   credentials: "include",
+      //   body: jsonS,
+      // }).catch((error) => {
+      //   console.error("Error:", error);
+      // });
+      axios
+        .post(url, jsonS, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     } else {
       const jsonData = Object.assign(value, obj, imgData);
 
       let jsonS = JSON.stringify(jsonData);
-      fetch(`${url}/${id}`, {
+      fetch(url / id, {
         method: "PUT", // or 'PUT'
         headers: {
           "Content-Type": "application/json",
@@ -125,24 +137,23 @@ export default function AddProducts({
   }
 
   return (
-    <>
-      <div className="add-container" ref={ref}>
-        <form className="add-product" onSubmit={handleSubmit}>
-          <button className="close-add" onClick={close}>
-            <AiOutlineClose />
-          </button>
-          <div className="add-products-left">
-            <div className="product-left-item1">
-              <Input
-                keys="name"
-                type="text"
-                name="name"
-                data="Name"
-                placeholder="Product Name"
-                value={pname}
-                change={(e) => setName(e.target.value)}
-              />
-              {/* <label htmlFor="name">name</label>
+    <div className="add-container" ref={ref}>
+      <form className="add-product" onSubmit={handleSubmit}>
+        <button className="close-add" onClick={close}>
+          <AiOutlineClose />
+        </button>
+        <div className="add-products-left">
+          <div className="product-left-item1">
+            <Input
+              keys="name"
+              type="text"
+              name="productName"
+              data="Name"
+              placeholder="Product Name"
+              value={pname}
+              change={(e) => setName(e.target.value)}
+            />
+            {/* <label htmlFor="name">name</label>
             <input
               type="text"
               name="name"
@@ -152,71 +163,87 @@ export default function AddProducts({
                 setName(e.target.value);
               }}
             /> */}
-              <Input type="text" name="nepName" data="नाम" placeholder="नाम" />
-              <Input
-                type="number"
-                name="rate"
-                data="Price per unit"
-                placeholder="Amount"
-                value={prate}
-                change={(e) => setRate(e.target.value)}
-              />
-              <div className="input-items">
-                <label htmlFor="">Unit Type</label>
-                <select
-                  name="unit"
-                  data="Unit type"
-                  id=""
-                  className="add-products-input input-select"
-                  value={punit}
-                  onChange={(e) => setUnit(e.target.value)}
-                >
-                  <option value="KG">KG</option>
-                  <option value="G">G</option>
-                </select>
-              </div>
+            <Input type="text" name="nepName" data="नाम" placeholder="नाम" />
+            <Input
+              type="number"
+              name="rate"
+              data="Price per unit"
+              placeholder="Amount"
+              value={prate}
+              change={(e) => setRate(e.target.value)}
+            />
+            <div className="input-items">
+              <label htmlFor="">Unit Type</label>
+              <select
+                name="unit"
+                data="Unit type"
+                id=""
+                className="add-products-input input-select"
+                value={punit}
+                onChange={(e) => setUnit(e.target.value)}
+              >
+                <option value="KG">KG</option>
+                <option value="G">G</option>
+              </select>
+            </div>
 
-              <Input
-                type="number"
-                name="rate"
-                data="Price per unit"
-                placeholder="Amount"
-                value={prate}
-                change={(e) => setRate(e.target.value)}
-              />
-              <div className="input-items">
-                <label htmlFor="">Unit Type</label>
-                <select
-                  name="unit"
-                  data="Unit type"
-                  id=""
-                  className="add-products-input input-select"
-                  value={punit}
-                  onChange={(e) => setUnit(e.target.value)}
-                >
-                  <option value="KG">KG</option>
-                  <option value="G">G</option>
-                </select>
-              </div>
+            <Input
+              type="number"
+              name="rate"
+              data="Price per unit"
+              placeholder="Amount"
+              value={prate}
+              change={(e) => setRate(e.target.value)}
+            />
+            <div className="input-items">
+              <label htmlFor="">Unit Type</label>
+              <select
+                name="unit"
+                data="Unit type"
+                id=""
+                className="add-products-input input-select"
+                value={punit}
+                onChange={(e) => setUnit(e.target.value)}
+              >
+                <option value="KG">KG</option>
+                <option value="G">G</option>
+              </select>
+            </div>
 
-              <Input
-                type="text"
-                name="discount"
-                data="Discount"
-                placeholder="Discount in % eg:(10%)"
-                change={(e) => setDiscount(e.target.value)}
-                value={pdiscount}
-              />
-              <Input
+            <Input
+              type="text"
+              name="discount"
+              data="Discount"
+              placeholder="Discount in % eg:(10%)"
+              change={(e) => setDiscount(e.target.value)}
+              value={pdiscount}
+            />
+            {/* <Input
                 type="number"
                 name="stock"
                 data="Stock"
                 value={pstock}
                 change={(e) => setStock(e.target.value)}
                 placeholder="Stock input number (100)"
-              />
+              /> */}
 
-              <div className="input-items">
+            <div className="input-items">
+              <label htmlFor="">Stock</label>
+              <select
+                name="stock"
+                data="Stock"
+                id=""
+                className="add-products-input input-select"
+                value={pstock}
+                onChange={(e) => setPackage(e.target.value)}
+              >
+                <option value="InStock">In Stock</option>
+                <option value="Out of Stock">Out of Stock</option>
+                <option value="Unavailable">Unavailable</option>
+              </select>
+            </div>
+
+            {/* <div className="input-items">
                 <label htmlFor="">Product Category</label>
                 <select
                   name="category"
@@ -243,36 +270,37 @@ export default function AddProducts({
                   <option value="c">c</option>
                   <option value="d">d</option>
                 </select>
-              </div>
-              <div className="input-items">
-                <label htmlFor="">Product Family</label>
-                <select
-                  name="family"
-                  data="Product Family"
-                  id=""
-                  className="add-products-input input-select"
-                  value={pfamily}
-                  onChange={(e) => setFamily(e.target.value)}
-                >
-                  <option value="e">e</option>
-                  <option value="f">f</option>
-                </select>
-              </div>
-              <div className="input-items">
-                <label htmlFor="">Product Type</label>
-                <select
-                  name="type"
-                  data="Product Type"
-                  id=""
-                  className="add-products-input input-select"
-                  value={ptype}
-                  onChange={(e) => setType(e.target.value)}
-                >
-                  <option value="t">t</option>
-                  <option value="h">h</option>
-                </select>
-              </div>
+              </div> */}
+            <div className="input-items">
+              <label htmlFor="">Product Family</label>
+              <select
+                name="family"
+                data="Product Family"
+                id=""
+                className="add-products-input input-select"
+                value={pfamily}
+                onChange={(e) => setFamily(e.target.value)}
+              >
+                <option value="e">e</option>
+                <option value="f">f</option>
+              </select>
+            </div>
+            <div className="input-items">
+              <label htmlFor="">Product Type</label>
+              <select
+                name="type"
+                data="Product Type"
+                id=""
+                className="add-products-input input-select"
+                value={ptype}
+                onChange={(e) => setType(e.target.value)}
+              >
+                <option value="t">t</option>
+                <option value="h">h</option>
+              </select>
+            </div>
 
+            <div className="products-radio-container">
               <div className="input-items">
                 <label htmlFor="">Is it organic?</label>
                 <div className="radio-btn">
@@ -280,8 +308,8 @@ export default function AddProducts({
                     type="radio"
                     name="organic"
                     id="organicY"
-                    value="Y"
-                    Checked={porganic === "Y" ? true : false}
+                    value="Yes"
+                    checked={porganic === "Yes" ? true : false}
                     // checked={porganic === "Y" ? "checked" : ""}
                     // checked={call === "PUT" && porganic === "Y" ? true : true}
                   />
@@ -290,8 +318,8 @@ export default function AddProducts({
                     type="radio"
                     name="organic"
                     id="organicN"
-                    value="N"
-                    Checked={porganic === "N" ? true : false}
+                    value="No"
+                    checked={porganic === "No" ? true : false}
                     // checked={call === "PUT" && porganic === "N" ? true : true}
 
                     // checked={porganic === "N" ? true : false}
@@ -307,6 +335,7 @@ export default function AddProducts({
                     type="radio"
                     name="edible"
                     id="edibleY"
+                    value="Yes"
                     // {...(pedible === "Y" ? (checked = true) : "")}
                   />
                   <label htmlFor="edibleY">Yes</label>
@@ -314,14 +343,16 @@ export default function AddProducts({
                     type="radio"
                     name="edible"
                     id="edibleN"
+                    value="No"
                     // checked={pedible === "N" ? true : false}
                   />
                   <label htmlFor="edibleN">No</label>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* <Input
+          {/* <Input
             type="text"
             name="pFamily"
             data="Product Family"
@@ -330,36 +361,43 @@ export default function AddProducts({
             change={(e) => setFamily(e.target.value)}
             class="input-item-2"
           /> */}
-            <div className="input-items">
-              <label htmlFor="descArea">Product Description</label>
-              <textarea
-                name="pDesc"
-                data="Product Description"
-                id="descArea"
-                cols="30"
-                rows="10"
-                // value={description}
-                className="add-products-input input-item-text topics"
-              ></textarea>
-            </div>
-            <button onSubmit={handleSubmit}>submit</button>
+          <div className="input-items">
+            <label htmlFor="descArea">Product Description</label>
+            <textarea
+              name="pDesc"
+              data="Product Description"
+              id="descArea"
+              cols="30"
+              rows="10"
+              // value={description}
+              className="add-products-input input-item-text topics"
+            ></textarea>
           </div>
+        </div>
 
-          <div className="add-products-right">
-            <h3>Upload Images</h3>
-            <UploadImg
-              dimension="234*188"
-              imgClass="add-product-img"
-              containerClass="product-img-container"
-              setMultiple={false}
-              setImg={setImage}
-              oldImg={pimg}
-              dropClass="add-product-drop"
-            />
-            {console.log(setImage)}
-          </div>
-        </form>
-      </div>
-    </>
+        <div className="add-products-right">
+          <h3>Upload Images</h3>
+          <UploadImg
+            dimension="234*188"
+            imgClass="add-product-img"
+            containerClass="product-img-container"
+            setMultiple={false}
+            setImg={setImage}
+            oldImg={pimg}
+            dropClass="add-product-drop"
+          />
+          {console.log(setImage)}
+        </div>
+        <div className="product-submit-container">
+          <button onSubmit={handleSubmit} className="product-submit">
+            Save
+          </button>
+
+          <button onClick={close} className="product-cancel">
+            Cancel
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }

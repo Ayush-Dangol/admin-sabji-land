@@ -14,7 +14,7 @@ export default function Categories() {
   const [family, setFamily] = useState("");
   const [type, setType] = useState("");
 
-  const url = `http://localhost:4001/${urlData}`;
+  const url = `http://localhost:4000/api/v1/getAllCategory`;
   console.log(url);
 
   const toggleAdd = () => {
@@ -36,7 +36,7 @@ export default function Categories() {
       try {
         const response = await fetch(url);
         const json = await response.json();
-        setData(json);
+        setData(json.data);
       } catch (error) {
         console.log("error", error);
       }
@@ -61,9 +61,9 @@ export default function Categories() {
 
   const preFilled = (sno) => {
     setId(sno);
-    let item = data[sno - 1];
+    let item = data.find((entry) => entry._id === sno);
     if (seeCategory) {
-      setCategory(item?.category);
+      setCategory(item?.categoryName);
     }
     if (pFamily) {
       setFamily(item?.productFamily);
@@ -78,7 +78,7 @@ export default function Categories() {
   const cTable = () => {
     const columnsData = [
       { label: "#", accessor: "id", sortable: true },
-      { label: "Category", accessor: "category", sortable: true },
+      { label: "Category", accessor: "categoryName", sortable: true },
     ];
     setColumns(columnsData);
     setUrlData("categories");
